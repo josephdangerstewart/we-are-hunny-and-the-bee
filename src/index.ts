@@ -1,1 +1,3 @@
-console.log('this is a test');
+import svgBoi from './path.svg';
+
+console.log(svgBoi);
