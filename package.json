@@ -4,12 +4,16 @@
   "description": "The wedding website for Hannah and I",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+	"test": "echo \"Error: no test specified\" && exit 1",
+	"build": "webpack --mode=production"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "tsc": "^1.20150623.0",
     "typescript": "^4.0.3"
+  },
+  "devDependencies": {
+    "ts-loader": "^8.0.4"
   }
 }
