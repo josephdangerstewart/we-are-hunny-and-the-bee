@@ -1,8 +1,9 @@
-<svg height="3543.9999999999995" xmlns="http://www.w3.org/2000/svg" style="vector-effect: non-scaling-stroke;" stroke="null">
+<svg width="800" height="3220" xmlns="http://www.w3.org/2000/svg" stroke="null" style="vector-effect: non-scaling-stroke;">
  <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
  <g stroke="null">
-  <path stroke="#000" style="vector-effect: non-scaling-stroke;" id="hannah" d="m0.75,0.75c7.21282,118.17472 64.1044,511.82433 105.1891,610.83558c44.03343,151.71079 188.55342,382.47091 305.97591,507.83193" stroke-width="1.5" fill="#fff"/>
-  <path stroke="#000" style="vector-effect: non-scaling-stroke;" id="joseph" d="m800.25003,0.75c-6.8211,118.28037 -60.62294,512.28193 -99.47636,611.3817c-41.64201,151.84643 -178.31323,382.81287 -289.35859,508.28597" stroke-width="1.5" fill="#fff"/>
-  <path stroke="#000" id="hannah_joseph" d="m411.78004,1117.33806l-1.11169,2420.0098l1.11169,-2420.0098z" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#fff"/>
+  <path stroke="#000" id="hannah" d="m0.75,0.75c13.04283,241.47956 68.77479,389.84947 118.68553,488.25806c50.13063,84.02581 156.85351,168.05161 217.00639,254.34839c67.91456,127.17419 53.41806,190.76129 60.47306,313.39355" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#fff"/>
+  <path stroke="#000" id="joseph" d="m799.25001,0.75c-11.68214,240.10751 -61.59986,387.6344 -106.30365,485.48385c-44.90075,83.54838 -140.48975,167.09677 -194.36718,252.90322c-60.82936,126.45161 -47.84521,189.67741 -54.1642,311.61289" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#fff"/>
+  <line stroke="#000" stroke-linecap="null" stroke-linejoin="null" id="hannah_joseph" y2="3206.6667" x2="415.83472" y1="1045.66673" x1="415.83472" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="none"/>
+  <line transform="rotate(-2.605370283126831 417.8352966308539,992.9999999999994) " stroke="#000" stroke-linecap="null" stroke-linejoin="null" id="bus" y2="1280.99998" x2="399.83529" y1="705" x1="435.83529" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="none"/>
  </g>
 </svg>
