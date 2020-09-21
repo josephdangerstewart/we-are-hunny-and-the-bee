@@ -18,5 +18,15 @@ export const mainScene = Scene.init({
 	})
 	.addAvatar({
 		name: 'hannah_joseph',
-		size: avatarSize,
+		size: {
+			width: 120,
+			height: 120,
+		},
+	})
+	.addAvatar({
+		name: 'bus',
+		size: {
+			width: 200,
+			height: 400,
+		}
 	});
