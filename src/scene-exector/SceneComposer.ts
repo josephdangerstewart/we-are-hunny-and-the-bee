@@ -2,20 +2,33 @@ import { Scene, Avatar } from '../scene';
 import svg from '../path.svg';
 import { IdConflictError, MissingPathException } from './errors';
 
-interface ComposedAvatar {
+export interface PathMeta {
+	length: number;
+	height: number;
+}
+
+export interface ComposedAvatar {
 	avatar: Avatar;
 	path: SVGPathElement;
+	pathMeta: PathMeta;
 	element: HTMLImageElement;
 }
 
-interface ComposedScene {
+export interface ComposedScene {
 	avatars: ComposedAvatar[],
 	svg: SVGElement;
 }
 
-interface SceneComposerOptions {
+export interface SceneComposerOptions {
 	scene: Scene;
 	rootElement: HTMLElement;
+}
+
+export interface Rect {
+	x: number;
+	y: number;
+	width: number;
+	height: number;
 }
 
 // Initializes the scene to the DOM but does not handle scroll logic
@@ -51,7 +64,6 @@ export class SceneComposer {
 
 	private loadAvatars(avatars: Avatar[], svg: SVGElement): ComposedAvatar[] {
 		const allPaths = this.getPathsFromSvgElement(svg);
-		console.log(allPaths);
 		const pathsById = allPaths.reduce<{ [id: string]: SVGPathElement }>((map, cur) => {
 				if (!cur.id) {
 					return map;
@@ -65,12 +77,13 @@ export class SceneComposer {
 				return map;
 			}, {});
 
-		console.log(pathsById);
 		return avatars.map((avatar) => {
 			const path = pathsById[avatar.name];
 			if (!path) {
 				throw new MissingPathException(avatar.name);
 			}
+			const pathLength = path.getTotalLength();
+			const pathHeight = path.getBoundingClientRect().height;
 
 			const element = document.createElement('img');
 			element.src = `images/avatars/${avatar.name}.png`;
@@ -86,11 +99,14 @@ export class SceneComposer {
 			element.style.top = `${startingPoint.y}px`;
 			element.style.left = `${startingPoint.x - (width / 2)}px`;
 
-
 			return {
 				element,
 				path,
 				avatar,
+				pathMeta: {
+					length: pathLength,
+					height: pathHeight,
+				},
 			};
 		});
 	}

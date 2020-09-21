@@ -25,4 +25,8 @@ export class Scene {
 	public getAvatars(): Avatar[] {
 		return this.avatars;
 	}
+
+	public getOffsetTop(): number {
+		return this.offsetTop;
+	}
 }
