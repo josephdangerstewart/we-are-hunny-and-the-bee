@@ -1,9 +1,9 @@
-<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+<svg height="600" xmlns="http://www.w3.org/2000/svg">
  <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
  <g>
   <title>Layer 1</title>
-  <path id="joseph_path" d="m113.835,0.75c0,0 23,101 74.165,172.66667c81.835,111.33333 175.835,118.33333 175,118" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="rgba(0,0,0,0)"/>
-  <path stroke="#000" id="hannah_path" d="m623.83502,0.75c0,0 -23.79928,101 -76.74232,172.66667c-84.67886,111.33333 -181.94547,118.33333 -181.08146,118" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="rgba(0,0,0,0)"/>
-  <path stroke="#000" id="joseph_hannah_path" d="m363.835,290.66667l0.165,306.33334l-0.165,-306.33334z" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="rgba(0,0,0,0)"/>
+  <path id="joseph" d="m113.835,0.75c0,0 23,101 74.165,172.66667c81.835,111.33333 175.835,118.33333 175,118" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="rgba(0,0,0,0)"/>
+  <path stroke="#000" id="hannah" d="m623.83502,0.75c0,0 -23.79928,101 -76.74232,172.66667c-84.67886,111.33333 -181.94547,118.33333 -181.08146,118" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="rgba(0,0,0,0)"/>
+  <path stroke="#000" id="hannah_joseph" d="m363.835,290.66667l0.165,306.33334l-0.165,-306.33334z" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="rgba(0,0,0,0)"/>
  </g>
 </svg>

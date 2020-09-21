@@ -1,17 +1,16 @@
 import { Avatar } from './Avatar';
 
 interface SceneOptions {
-	pathSrc: string;
 	offsetTop: number;
 }
 
 export class Scene {
 	private avatars: Avatar[];
-	private pathSrc: string;
 	private offsetTop: number;
 
 	private constructor(options: SceneOptions) {
-		this.pathSrc = options.pathSrc;
+		this.offsetTop = options.offsetTop;
+		this.avatars = [];
 	}
 
 	public static init(options: SceneOptions): Scene {
@@ -21,5 +20,9 @@ export class Scene {
 	public addAvatar(avatar: Avatar): Scene {
 		this.avatars.push(avatar);
 		return this;
+	}
+
+	public getAvatars(): Avatar[] {
+		return this.avatars;
 	}
 }

@@ -1,5 +1,7 @@
 plugins:
   - removeTitle: true
   - convertPathData: false
+  - mergePaths: false
+  - cleanupIDs: false
   - convertColors:
       shorthex: false

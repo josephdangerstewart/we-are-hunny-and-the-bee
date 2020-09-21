@@ -1,3 +1,4 @@
-import svgBoi from './path.svg';
+import { executeScene } from './scene-exector';
+import { mainScene } from './main-scene';
 
-console.log(svgBoi);
+executeScene(mainScene, document.body);
