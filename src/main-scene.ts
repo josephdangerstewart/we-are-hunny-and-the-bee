@@ -8,25 +8,7 @@ const avatarSize = {
 export const mainScene = Scene.init({
 	offsetTop: 20,
 })
-	.addAvatar({
-		name: 'hannah',
-		size: avatarSize,
-	})
-	.addAvatar({
-		name: 'joseph',
-		size: avatarSize,
-	})
-	.addAvatar({
-		name: 'hannah_joseph',
-		size: {
-			width: 120,
-			height: 120,
-		},
-	})
-	.addAvatar({
-		name: 'bus',
-		size: {
-			width: 200,
-			height: 400,
-		}
-	});
+	.addAvatar('hannah', avatarSize)
+	.addAvatar('joseph', avatarSize)
+	.addAvatar('hannah_joseph', { width: 120, height: 120 })
+	.addAvatar('bus', { width: 200, height: 400 });

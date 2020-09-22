@@ -1,10 +1,10 @@
-import { Avatar } from './Avatar';
+import { Avatar, Size } from './Avatar';
 
 interface SceneOptions {
 	offsetTop: number;
 }
 
-export class Scene {
+export class Scene<TAvatarKind> {
 	private avatars: Avatar[];
 	private offsetTop: number;
 
@@ -13,12 +13,12 @@ export class Scene {
 		this.avatars = [];
 	}
 
-	public static init(options: SceneOptions): Scene {
+	public static init(options: SceneOptions): Scene<undefined> {
 		return new Scene(options);
 	}
 
-	public addAvatar(avatar: Avatar): Scene {
-		this.avatars.push(avatar);
+	public addAvatar<T extends string>(name: T, size?: Size): Scene<T | TAvatarKind> {
+		this.avatars.push({ name, size });
 		return this;
 	}
 
