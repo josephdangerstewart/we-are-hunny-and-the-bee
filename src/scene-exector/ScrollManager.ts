@@ -35,7 +35,12 @@ export class ScrollManager {
 		this.hiddenAvatars.clear();
 		for (const avatar of this.scene.avatars) {
 			const isAlwaysVisible = avatar.avatar.alwaysVisible;
-			const position = this.getPositionAlongPath(scrollTop, avatar.path, avatar.pathMeta, isAlwaysVisible);
+			const position = this.getPositionAlongPath(
+				scrollTop,
+				avatar.path,
+				avatar.pathMeta,
+				isAlwaysVisible,
+				avatar.avatar.offsetTop);
 			const isLinkedAvatarHidden = avatar.avatar.syncedAvatars.some(x => this.hiddenAvatars.has(x));
 			const isReverseLinkedAvatarHidden = avatar.avatar.reverseSyncedAvatars.every(x => this.hiddenAvatars.has(x));
 
@@ -69,7 +74,7 @@ export class ScrollManager {
 		this.hiddenAvatars.delete(avatar.avatar.name);
 	}
 
-	private getPositionAlongPath(scrollTop: number, path: SVGPathElement, pathMeta: PathMeta, isAlwaysVisible: boolean): Position | null {
+	private getPositionAlongPath(scrollTop: number, path: SVGPathElement, pathMeta: PathMeta, isAlwaysVisible: boolean, offsetTop: number): Position | null {
 		const beginning = path.getPointAtLength(0);
 		const endY = beginning.y + pathMeta.height;
 
@@ -77,7 +82,7 @@ export class ScrollManager {
 		const bottomY = Math.max(beginning.y, endY);
 		const isInverted = endY < beginning.y;
 
-		const currentScrollY = scrollTop + this.topOffset;
+		const currentScrollY = scrollTop + this.topOffset + offsetTop;
 
 		if (currentScrollY < topY || currentScrollY > bottomY) {
 			if (isAlwaysVisible) {

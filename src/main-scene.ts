@@ -25,4 +25,5 @@ export const mainScene = Scene.init({
 			height: 400
 		},
 		alwaysVisible: true,
+		offsetTop: -60,
 	});

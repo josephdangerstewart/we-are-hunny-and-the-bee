@@ -9,4 +9,5 @@ export interface Avatar {
 	syncedAvatars: string[];
 	reverseSyncedAvatars: string[];
 	alwaysVisible: boolean;
+	offsetTop: number;
 }

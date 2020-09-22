@@ -9,6 +9,7 @@ interface AvatarCreationOptions<TAvatarKind extends string> {
 	showWith?: TAvatarKind[];
 	size: Size;
 	alwaysVisible?: boolean;
+	offsetTop?: number;
 }
 
 export class Scene<TAvatarKind extends string> {
@@ -31,6 +32,7 @@ export class Scene<TAvatarKind extends string> {
 			syncedAvatars: options.showWith ?? [],
 			reverseSyncedAvatars: options.showAfter ?? [],
 			alwaysVisible: options.alwaysVisible ?? false,
+			offsetTop: options.offsetTop ?? 0,
 		});
 		return this;
 	}
