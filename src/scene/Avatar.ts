@@ -6,5 +6,7 @@ export interface Size {
 export interface Avatar {
 	name: string;
 	size?: Size;
-	linkedAvatars: string[];
+	syncedAvatars: string[];
+	reverseSyncedAvatars: string[];
+	alwaysVisible: boolean;
 }

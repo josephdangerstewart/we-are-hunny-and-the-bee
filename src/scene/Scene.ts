@@ -4,6 +4,13 @@ interface SceneOptions {
 	offsetTop: number;
 }
 
+interface AvatarCreationOptions<TAvatarKind extends string> {
+	showAfter?: TAvatarKind[];
+	showWith?: TAvatarKind[];
+	size: Size;
+	alwaysVisible?: boolean;
+}
+
 export class Scene<TAvatarKind extends string> {
 	private avatars: Avatar[];
 	private offsetTop: number;
@@ -17,17 +24,14 @@ export class Scene<TAvatarKind extends string> {
 		return new Scene(options);
 	}
 
-	public addAvatar<T extends string>(name: T, size: Size): Scene<T | TAvatarKind> {
-		this.avatars.push({ size, name, linkedAvatars: [] });
-		return this;
-	}
-
-	public syncAvatarVisibility(...avatars: TAvatarKind[]): Scene<TAvatarKind> {
-		for (let i = 0; i < avatars.length; i++) {
-			const avatarName = avatars[i];
-			const found = this.avatars.find(x => x.name === avatarName);
-			found.linkedAvatars.push(...avatars.filter(x => x !== avatarName));
-		}
+	public addAvatar<T extends string>(name: T, options: AvatarCreationOptions<TAvatarKind>): Scene<T | TAvatarKind> {
+		this.avatars.push({
+			size: options.size,
+			name,
+			syncedAvatars: options.showWith ?? [],
+			reverseSyncedAvatars: options.showAfter ?? [],
+			alwaysVisible: options.alwaysVisible ?? false,
+		});
 		return this;
 	}
 

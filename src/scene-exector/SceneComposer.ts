@@ -19,8 +19,8 @@ export interface ComposedScene {
 	svg: SVGElement;
 }
 
-export interface SceneComposerOptions {
-	scene: Scene;
+export interface SceneComposerOptions<T extends string> {
+	scene: Scene<T>;
 	rootElement: HTMLElement;
 }
 
@@ -32,16 +32,16 @@ export interface Rect {
 }
 
 // Initializes the scene to the DOM but does not handle scroll logic
-export class SceneComposer {
-	private scene: Scene;
+export class SceneComposer<T extends string> {
+	private scene: Scene<T>;
 	private rootElement: HTMLElement;
 
-	private constructor(options: SceneComposerOptions) {
+	private constructor(options: SceneComposerOptions<T>) {
 		this.scene = options.scene;
 		this.rootElement = options.rootElement;
 	}
 
-	public static init(options: SceneComposerOptions): SceneComposer {
+	public static init<U extends string>(options: SceneComposerOptions<U>): SceneComposer<U> {
 		return new SceneComposer(options);
 	}
 

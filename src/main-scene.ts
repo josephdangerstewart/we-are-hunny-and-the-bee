@@ -8,9 +8,21 @@ const avatarSize = {
 export const mainScene = Scene.init({
 	offsetTop: 20,
 })
-	.addAvatar('hannah', avatarSize)
-	.addAvatar('joseph', avatarSize)
-	.addAvatar('hannah_joseph', { width: 120, height: 120 })
-	.addAvatar('bus', { width: 200, height: 400 })
-	
-	.syncAvatarVisibility('hannah', 'joseph');
+	.addAvatar('hannah', {
+		size: avatarSize,
+	})
+	.addAvatar('joseph', {
+		size: avatarSize,
+		showWith: [ 'hannah' ]
+	})
+	.addAvatar('hannah_joseph', {
+		size: { width: 120, height: 120 },
+		showAfter: [ 'hannah', 'joseph' ]
+	})
+	.addAvatar('bus', {
+		size: {
+			width: 200,
+			height: 400
+		},
+		alwaysVisible: true,
+	});
