@@ -11,4 +11,6 @@ export const mainScene = Scene.init({
 	.addAvatar('hannah', avatarSize)
 	.addAvatar('joseph', avatarSize)
 	.addAvatar('hannah_joseph', { width: 120, height: 120 })
-	.addAvatar('bus', { width: 200, height: 400 });
+	.addAvatar('bus', { width: 200, height: 400 })
+	
+	.syncAvatarVisibility('hannah', 'joseph');
