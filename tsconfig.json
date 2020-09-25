@@ -10,5 +10,6 @@
 		"sourceMap": true,
 		"skipLibCheck": true,
 		"esModuleInterop": true,
-	},
+		"typeRoots": ["./types"]
+	}
 }

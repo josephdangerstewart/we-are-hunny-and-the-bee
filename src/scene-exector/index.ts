@@ -2,7 +2,7 @@ import { SceneComposer } from './SceneComposer';
 import { ScrollManager } from './ScrollManager';
 import { Scene } from '../scene/Scene';
 
-export function executeScene(scene: Scene, rootElement: HTMLElement) {
+export function executeScene<T extends string>(scene: Scene<T>, rootElement: HTMLElement) {
 	const composedScene = SceneComposer
 		.init({
 			rootElement,
