@@ -1,4 +1,4 @@
-import { executeScene } from './scene-exector';
+import { compose } from './scene-exector';
 import { mainScene } from './main-scene';
 
-executeScene(mainScene, document.getElementById('root'));
+compose(mainScene, document.getElementById('root')).execute();
