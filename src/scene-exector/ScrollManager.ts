@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ComposedScene, ComposedAvatar } from './SceneComposer';
+import { ComposedScene } from './SceneComposer';
 
 gsap.registerPlugin(MotionPathPlugin);
 gsap.registerPlugin(ScrollTrigger);
