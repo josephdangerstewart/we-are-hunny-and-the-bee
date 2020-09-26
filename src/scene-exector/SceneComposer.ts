@@ -16,6 +16,7 @@ export interface ComposedAvatar {
 export interface ComposedScene {
 	avatars: ComposedAvatar[],
 	svg: SVGElement;
+	rootElement: HTMLElement;
 }
 
 export interface SceneComposerOptions<T extends string> {
@@ -51,6 +52,7 @@ export class SceneComposer<T extends string> {
 		return {
 			svg,
 			avatars,
+			rootElement: this.rootElement,
 		};
 	}
 

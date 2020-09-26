@@ -38,7 +38,7 @@ export class ScrollManager {
 			triggerElement.style.position = 'absolute';
 			triggerElement.style.top = `${y}px`;
 			triggerElement.style.left = `${x}px`;
-			document.body.appendChild(triggerElement);
+			this.scene.rootElement.appendChild(triggerElement);
 
 			const onEnd = () => {
 				if (avatar.alwaysVisible) {
