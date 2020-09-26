@@ -41,7 +41,7 @@ export class ScrollManager {
 			this.scene.rootElement.appendChild(triggerElement);
 
 			const onEnd = () => {
-				if (avatar.alwaysVisible) {
+				if (!avatar.hideOnExit) {
 					return;
 				}
 

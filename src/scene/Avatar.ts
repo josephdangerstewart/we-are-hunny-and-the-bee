@@ -7,6 +7,6 @@ export interface Avatar {
 	name: string;
 	size?: Size;
 	initiallyHidden: boolean;
-	alwaysVisible: boolean;
 	offsetTop: number;
+	hideOnExit: boolean;
 }

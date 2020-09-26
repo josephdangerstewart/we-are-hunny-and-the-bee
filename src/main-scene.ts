@@ -12,9 +12,11 @@ export const mainScene = Scene.init({
 })
 	.addAvatar('hannah', {
 		size: avatarSize,
+		hideOnExit: true,
 	})
 	.addAvatar('joseph', {
 		size: avatarSize,
+		hideOnExit: true,
 	})
 	.addAvatar('hannah_joseph', {
 		size: { width: 135, height: 135 },
@@ -25,6 +27,5 @@ export const mainScene = Scene.init({
 			width: 400,
 			height: 400
 		},
-		alwaysVisible: true,
 		offsetTop: -60,
 	});

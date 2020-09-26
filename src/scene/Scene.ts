@@ -8,8 +8,8 @@ interface SceneOptions {
 interface AvatarCreationOptions<TAvatarKind extends string> {
 	initiallyHidden?: boolean;
 	size: Size;
-	alwaysVisible?: boolean;
 	offsetTop?: number;
+	hideOnExit?: boolean;
 }
 
 export class Scene<TAvatarKind extends string> {
@@ -32,8 +32,8 @@ export class Scene<TAvatarKind extends string> {
 			size: options.size,
 			name,
 			initiallyHidden: options.initiallyHidden ?? false,
-			alwaysVisible: options.alwaysVisible ?? false,
 			offsetTop: options.offsetTop ?? 0,
+			hideOnExit: options.hideOnExit ?? false,
 		});
 		return this;
 	}
