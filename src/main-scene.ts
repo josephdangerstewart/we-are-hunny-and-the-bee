@@ -20,7 +20,7 @@ export const mainScene = Scene.init({
 	})
 	.addAvatar('bus', {
 		size: {
-			width: 200,
+			width: 400,
 			height: 400
 		},
 		alwaysVisible: true,

@@ -58,6 +58,7 @@ export class SceneComposer<T extends string> {
 	private loadSvg(): SVGElement {
 		const parser = new DOMParser();
 		const svgElement = parser.parseFromString(svg, 'image/svg+xml').documentElement as unknown as SVGElement;
+		svgElement.style.visibility = 'hidden';
 		this.rootElement.appendChild(svgElement);
 		return svgElement;
 	}
@@ -97,7 +98,7 @@ export class SceneComposer<T extends string> {
 				element.style.visibility = 'hidden';
 			}
 
-			document.body.appendChild(element);
+			this.rootElement.appendChild(element);
 			const { width } = element.getBoundingClientRect();
 
 			element.style.top = `${startingPoint.y}px`;
