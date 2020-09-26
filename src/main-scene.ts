@@ -1,8 +1,8 @@
 import { Scene } from './scene'
 
 const avatarSize = {
-	width: 90,
-	height: 90,
+	width: 110,
+	height: 110,
 }
 
 export const mainScene = Scene.init({
@@ -15,7 +15,7 @@ export const mainScene = Scene.init({
 		size: avatarSize,
 	})
 	.addAvatar('hannah_joseph', {
-		size: { width: 120, height: 120 },
+		size: { width: 135, height: 135 },
 		initiallyHidden: true,
 	})
 	.addAvatar('bus', {
