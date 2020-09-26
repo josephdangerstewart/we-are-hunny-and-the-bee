@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ComposedScene } from './SceneComposer';
+import { ComposedScene, ComposedAvatar } from './SceneComposer';
 
 gsap.registerPlugin(MotionPathPlugin);
 gsap.registerPlugin(ScrollTrigger);
@@ -31,7 +31,7 @@ export class ScrollManager {
 
 	public observeScroll(): ScrollManager {
 		for (const composedAvatar of this.scene.avatars) {
-			const { path, element, pathMeta } = composedAvatar;
+			const { path, element, pathMeta, avatar } = composedAvatar;
 
 			const { x, y } = path.getPointAtLength(0);
 			const triggerElement = document.createElement('div');
@@ -40,7 +40,25 @@ export class ScrollManager {
 			triggerElement.style.left = `${x}px`;
 			document.body.appendChild(triggerElement);
 
-			console.log(path);
+			const onEnd = () => {
+				if (avatar.alwaysVisible) {
+					return;
+				}
+
+				element.style.visibility = 'hidden';
+			}
+
+			const onReset = () => {
+				if (avatar.initiallyHidden) {
+					element.style.visibility = 'hidden';
+				}
+			}
+
+			const onStart = () => {
+				element.style.visibility = 'visible';
+			}
+
+			const totalOffset = avatar.offsetTop + this.topOffset;
 			gsap.to(element, {
 				motionPath: {
 					path,
@@ -50,9 +68,13 @@ export class ScrollManager {
 				},
 				scrollTrigger: {
 					trigger: triggerElement,
-					start: this.topOffset ? `top top+=${this.topOffset}` : 'top top',
+					start: this.topOffset ? `top top+=${totalOffset}` : 'top top',
 					end: `+=${pathMeta.height}`,
 					scrub: true,
+					onEnter: onStart,
+					onEnterBack: onStart,
+					onLeave: onEnd,
+					onLeaveBack: onReset,
 				},
 				ease: 'none',
 			});

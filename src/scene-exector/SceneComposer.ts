@@ -93,6 +93,10 @@ export class SceneComposer<T extends string> {
 			element.style.width = avatar.size?.width && `${avatar.size?.width}px`;
 			element.style.height = avatar.size?.height && `${avatar.size?.height}px`;
 
+			if (avatar.initiallyHidden) {
+				element.style.visibility = 'hidden';
+			}
+
 			document.body.appendChild(element);
 			const { width } = element.getBoundingClientRect();
 

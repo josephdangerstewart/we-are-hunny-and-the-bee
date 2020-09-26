@@ -5,8 +5,7 @@ interface SceneOptions {
 }
 
 interface AvatarCreationOptions<TAvatarKind extends string> {
-	showAfter?: TAvatarKind[];
-	showWith?: TAvatarKind[];
+	initiallyHidden?: boolean;
 	size: Size;
 	alwaysVisible?: boolean;
 	offsetTop?: number;
@@ -29,8 +28,7 @@ export class Scene<TAvatarKind extends string> {
 		this.avatars.push({
 			size: options.size,
 			name,
-			syncedAvatars: options.showWith ?? [],
-			reverseSyncedAvatars: options.showAfter ?? [],
+			initiallyHidden: options.initiallyHidden ?? false,
 			alwaysVisible: options.alwaysVisible ?? false,
 			offsetTop: options.offsetTop ?? 0,
 		});

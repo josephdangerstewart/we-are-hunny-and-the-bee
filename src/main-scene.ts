@@ -13,11 +13,10 @@ export const mainScene = Scene.init({
 	})
 	.addAvatar('joseph', {
 		size: avatarSize,
-		showWith: [ 'hannah' ]
 	})
 	.addAvatar('hannah_joseph', {
 		size: { width: 120, height: 120 },
-		showAfter: [ 'hannah', 'joseph' ]
+		initiallyHidden: true,
 	})
 	.addAvatar('bus', {
 		size: {
