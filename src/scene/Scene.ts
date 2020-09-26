@@ -1,7 +1,8 @@
 import { Avatar, Size } from './Avatar';
 
 interface SceneOptions {
-	offsetTop: number;
+	offsetTop?: number;
+	svg: string;
 }
 
 interface AvatarCreationOptions<TAvatarKind extends string> {
@@ -14,10 +15,12 @@ interface AvatarCreationOptions<TAvatarKind extends string> {
 export class Scene<TAvatarKind extends string> {
 	private avatars: Avatar[];
 	private offsetTop: number;
+	private svg: string;
 
 	private constructor(options: SceneOptions) {
-		this.offsetTop = options.offsetTop;
+		this.offsetTop = options.offsetTop ?? 0;
 		this.avatars = [];
+		this.svg = options.svg;
 	}
 
 	public static init(options: SceneOptions): Scene<undefined> {
@@ -41,5 +44,9 @@ export class Scene<TAvatarKind extends string> {
 
 	public getOffsetTop(): number {
 		return this.offsetTop;
+	}
+
+	public getSvg(): string {
+		return this.svg;
 	}
 }

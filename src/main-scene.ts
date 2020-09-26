@@ -1,4 +1,5 @@
-import { Scene } from './scene'
+import { Scene } from './scene';
+import svg from './path.svg';
 
 const avatarSize = {
 	width: 110,
@@ -7,6 +8,7 @@ const avatarSize = {
 
 export const mainScene = Scene.init({
 	offsetTop: 50,
+	svg,
 })
 	.addAvatar('hannah', {
 		size: avatarSize,

@@ -1,5 +1,4 @@
 import { Scene, Avatar } from '../scene';
-import svg from '../path.svg';
 import { IdConflictError, MissingPathException } from './errors';
 
 export interface PathMeta {
@@ -57,7 +56,7 @@ export class SceneComposer<T extends string> {
 
 	private loadSvg(): SVGElement {
 		const parser = new DOMParser();
-		const svgElement = parser.parseFromString(svg, 'image/svg+xml').documentElement as unknown as SVGElement;
+		const svgElement = parser.parseFromString(this.scene.getSvg(), 'image/svg+xml').documentElement as unknown as SVGElement;
 		svgElement.style.visibility = 'hidden';
 		this.rootElement.appendChild(svgElement);
 		return svgElement;
