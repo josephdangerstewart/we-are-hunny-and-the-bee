@@ -7,7 +7,7 @@ const avatarSize = {
 }
 
 export const mainScene = Scene.init({
-	offsetTop: 50,
+	offsetTop: 200,
 	svg,
 })
 	.addAvatar('hannah', {
