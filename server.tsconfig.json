@@ -2,7 +2,6 @@
 	"compilerOptions": {
 		"target": "es6",
 		"lib": [
-			"dom",
 			"es6"
 		],
 		"module": "commonjs",
@@ -11,6 +10,10 @@
 		"skipLibCheck": true,
 		"esModuleInterop": true,
 		"typeRoots": ["./types"],
-		"types": ["node"]
-	}
+		"types": ["node"],
+		"outDir": "server/dist"
+	},
+	"files": [
+		"server/index.ts"
+	]
 }

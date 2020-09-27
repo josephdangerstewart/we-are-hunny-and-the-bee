@@ -5,15 +5,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=production",
+	"build": "webpack --mode=production",
+	"build:server": "tsc --project server.tsconfig.json",
+	"server": "yarn build:server && node server/dist/index.js",
     "dev": "webpack --mode=development --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/express": "types/express",
     "@types/gsap": "^1.20.2",
+    "@types/node": "^14.11.2",
+    "express": "^4.17.1",
     "gsap": "^3.5.1",
     "imports-loader": "^0.8.0",
+    "path": "^0.12.7",
     "tsc": "^1.20150623.0",
     "typescript": "^4.0.3"
   },
