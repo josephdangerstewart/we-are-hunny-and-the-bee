@@ -11,6 +11,6 @@ app.get('/', (req, response) => {
 console.log(publicDir);
 app.use(express.static(publicDir));
 
-const port = process.env.NODE_ENV ?? 8080;
+const port = process.env.PORT ?? 8080;
 console.log(`Listening on ${port}`);
 app.listen(port);
