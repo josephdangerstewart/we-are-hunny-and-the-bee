@@ -88,7 +88,7 @@ export class SceneComposer<T extends string> {
 			const pathHeight = path.getBoundingClientRect().height;
 
 			const element = document.createElement('img');
-			element.src = `images/avatars/${avatar.name}.png`;
+			element.src = `/images/avatars/${avatar.name}.png`;
 
 			element.style.position = 'absolute';
 			const startingPoint = path.getPointAtLength(0);
