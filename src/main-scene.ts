@@ -33,4 +33,9 @@ export const mainScene = Scene.init({
 	.addElement('nevada', {
 		avatar: 'joseph',
 		position: '2%',
+		size: {
+			width: 200,
+			height: 200,
+		},
+		xOffset: -250,
 	});

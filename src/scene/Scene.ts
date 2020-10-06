@@ -1,5 +1,6 @@
-import { Avatar, Size } from './Avatar';
+import { Avatar } from './Avatar';
 import { Element } from './Element';
+import { Size } from './Size';
 
 interface SceneOptions {
 	svg: string;
@@ -17,6 +18,7 @@ interface ElementCreationOptions<T extends string> {
 	position: string;
 	avatar: T;
 	xOffset?: number;
+	size?: Size;
 }
 
 type Not<T, ExcludedT> = T extends ExcludedT ? never : T;
@@ -25,7 +27,7 @@ export class Scene<TAvatarKind extends string> {
 	private avatars: Avatar[];
 	private offsetTop: number;
 	private svg: string;
-	private elements: Record<string, Element>;
+	private elements: Record<string, Element[]>;
 
 	private constructor(options: SceneOptions) {
 		this.offsetTop = options.offsetTop ?? 0;
@@ -49,19 +51,32 @@ export class Scene<TAvatarKind extends string> {
 		return this;
 	}
 
-	public addElement(name: string, element: ElementCreationOptions<TAvatarKind>): void {
-		const positionPercentage = parseInt(/(\d+)\s*%/.exec(element.position)[1]);
+	public addElement(name: string, element: ElementCreationOptions<TAvatarKind>): Scene<TAvatarKind> {
+		const positionPercentage = parseInt(/(\d+)\s*%/.exec(element.position)[1]) / 100;
 
 		if (isNaN(positionPercentage)) {
 			throw new Error(`Position could not be parsed as a percentage: ${element.position}`);
 		}
 
-		this.elements[element.avatar] = {
+		const result: Element = {
 			name,
 			avatar: element.avatar,
 			positionPercentage,
 			xOffset: element.xOffset ?? 0,
+			size: element.size,
 		};
+
+		if (this.elements[element.avatar]) {
+			this.elements[element.avatar].push(result);
+		} else {
+			this.elements[element.avatar] = [ result ];
+		}
+
+		return this;
+	}
+
+	public getElements(avatar: string): Element[] {
+		return this.elements[avatar] ?? [];
 	}
 
 	public getAvatars(): Avatar[] {

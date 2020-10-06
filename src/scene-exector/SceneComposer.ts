@@ -1,5 +1,8 @@
-import { Scene, Avatar } from '../scene';
+import { Scene, Avatar, Element } from '../scene';
 import { IdConflictError, MissingPathException } from './errors';
+
+const getAvatarPath = (n: string) => `/images/avatars/${n}.png`;
+const getElementPath = (n: string) => `/images/elements/${n}.png`;
 
 export interface PathMeta {
 	length: number;
@@ -10,7 +13,13 @@ export interface ComposedAvatar {
 	avatar: Avatar;
 	path: SVGPathElement;
 	pathMeta: PathMeta;
-	element: HTMLImageElement;
+	imageElement: HTMLImageElement;
+	elements: ComposedElement[];
+}
+
+export interface ComposedElement {
+	imageElement: HTMLImageElement;
+	element: Element;
 }
 
 export interface ComposedScene {
@@ -88,7 +97,7 @@ export class SceneComposer<T extends string> {
 			const pathHeight = path.getBoundingClientRect().height;
 
 			const element = document.createElement('img');
-			element.src = `/images/avatars/${avatar.name}.png`;
+			element.src = getAvatarPath(avatar.name);
 
 			element.style.position = 'absolute';
 			const startingPoint = path.getPointAtLength(0);
@@ -105,14 +114,19 @@ export class SceneComposer<T extends string> {
 			element.style.top = `${startingPoint.y}px`;
 			element.style.left = `${startingPoint.x - (width / 2)}px`;
 
+			const elements: ComposedElement[] = this.scene
+				.getElements(avatar.name)
+				.map(e => this.mapElement(e, path, pathLength));
+
 			return {
-				element,
+				imageElement: element,
 				path,
 				avatar,
 				pathMeta: {
 					length: pathLength,
 					height: pathHeight,
 				},
+				elements,
 			};
 		});
 	}
@@ -131,5 +145,29 @@ export class SceneComposer<T extends string> {
 		}
 
 		return paths;
+	}
+
+	private mapElement(element: Element, path: SVGPathElement, pathLength: number): ComposedElement {
+		const imageElement = document.createElement('img');
+		imageElement.src = getElementPath(element.name);
+		imageElement.style.position = 'absolute';
+
+		if (element.size?.width) {
+			imageElement.style.width = `${element.size.width}px`;
+		}
+
+		if (element.size?.height) {
+			imageElement.style.height = `${element.size.height}px`;
+		}
+
+		const point = path.getPointAtLength(pathLength * element.positionPercentage);
+		imageElement.style.top = `${point.y}px`;
+		imageElement.style.left = `${point.x + element.xOffset}px`;
+		this.rootElement.appendChild(imageElement);
+
+		return {
+			imageElement,
+			element,
+		};
 	}
 }

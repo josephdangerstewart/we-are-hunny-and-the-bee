@@ -31,7 +31,7 @@ export class ScrollManager {
 
 	public observeScroll(): ScrollManager {
 		for (const composedAvatar of this.scene.avatars) {
-			const { path, element, pathMeta, avatar } = composedAvatar;
+			const { path, imageElement, pathMeta, avatar } = composedAvatar;
 
 			const { x, y } = path.getPointAtLength(0);
 			const triggerElement = document.createElement('div');
@@ -45,21 +45,21 @@ export class ScrollManager {
 					return;
 				}
 
-				element.style.visibility = 'hidden';
+				imageElement.style.visibility = 'hidden';
 			}
 
 			const onReset = () => {
 				if (avatar.initiallyHidden) {
-					element.style.visibility = 'hidden';
+					imageElement.style.visibility = 'hidden';
 				}
 			}
 
 			const onStart = () => {
-				element.style.visibility = 'visible';
+				imageElement.style.visibility = 'visible';
 			}
 
 			const totalOffset = avatar.offsetTop + this.topOffset;
-			gsap.to(element, {
+			gsap.to(imageElement, {
 				motionPath: {
 					path,
 					alignOrigin: [0.5, 0],

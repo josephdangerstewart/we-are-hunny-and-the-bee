@@ -1,3 +1,5 @@
+import { Size } from './Size';
+
 export interface Element {
 	/**
 	 * @description The avatar that this element is bound to
@@ -19,4 +21,6 @@ export interface Element {
 	 * @description The name of the png file in public/images/elements
 	 */
 	name: string;
+
+	size?: Size;
 }

@@ -1,7 +1,4 @@
-export interface Size {
-	width?: number;
-	height?: number;
-}
+import { Size } from './Size';
 
 export interface Avatar {
 	name: string;
