@@ -1,9 +1,9 @@
-<svg id="motion_paths" width="800" height="3220" xmlns="http://www.w3.org/2000/svg" stroke="null" style="vector-effect: non-scaling-stroke;">
+<svg width="800" height="4000" xmlns="http://www.w3.org/2000/svg">
  <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
- <g stroke="null">
-  <path stroke="#000" id="hannah" d="m0.75,0.75c13.04283,241.47956 68.77479,389.84947 118.68553,488.25806c50.13063,84.02581 156.85351,168.05161 217.00639,254.34839c67.91456,127.17419 53.41806,190.76129 60.47306,313.39355" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#fff"/>
-  <path stroke="#000" id="joseph" d="m799.25001,0.75c-11.68214,240.10751 -61.59986,387.6344 -106.30365,485.48385c-44.90075,83.54838 -140.48975,167.09677 -194.36718,252.90322c-60.82936,126.45161 -47.84521,189.67741 -54.1642,311.61289" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="#fff"/>
-  <line stroke="#000" stroke-linecap="null" stroke-linejoin="null" id="hannah_joseph" y2="3206.6667" x2="415.83472" y1="1045.66673" x1="415.83472" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="none"/>
-  <line transform="rotate(-2.605370283126831 417.8352966308539,992.9999999999994) " stroke="#000" stroke-linecap="null" stroke-linejoin="null" id="bus" y2="1280.99998" x2="399.83529" y1="705" x1="435.83529" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="none"/>
+ <g>
+  <path stroke="#000" id="hannah" d="m92.73978,16c-1.51673,189.44871 66.9676,521.24475 143.07042,700.38272c76.66695,170.9787 119.04781,383.49697 131.90457,619.75218" stroke-width="1.5" fill="#fff"/>
+  <path stroke="#000" id="joseph" d="m680.08001,16c1.41828,188.29891 -62.62078,518.08122 -133.78382,696.13197c-71.69055,169.941 -111.3205,381.16946 -123.34274,615.99079" stroke-width="1.5" fill="#fff"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="bus" y2="1596.24085" x2="391.91167" y1="1193.37944" x1="390.95928" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
+  <line stroke="#000" stroke-linecap="null" stroke-linejoin="null" id="hannah_joseph" y2="3972.67707" x2="395.47331" y1="1328.08047" x1="395.08096" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="none"/>
  </g>
 </svg>
