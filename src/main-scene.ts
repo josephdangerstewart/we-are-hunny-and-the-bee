@@ -10,6 +10,7 @@ export const mainScene = Scene.init({
 	offsetTop: 200,
 	svg,
 })
+	// Avatar definitions
 	.addAvatar('hannah', {
 		size: avatarSize,
 		hideOnExit: true,
@@ -30,12 +31,60 @@ export const mainScene = Scene.init({
 		offsetTop: -60,
 	})
 	
+	// Nevada elements
 	.addElement('nevada', {
 		avatar: 'joseph',
-		position: '2%',
+		position: '0%',
 		size: {
 			width: 200,
 			height: 200,
 		},
 		xOffset: -250,
-	});
+	})
+	.addElement('vegas_sign', {
+		avatar: 'joseph',
+		position: '8%',
+		size: {
+			width: 200,
+			height: 200,
+		},
+		xOffset: 40,
+	})
+	.addElement('redrock', {
+		avatar: 'joseph',
+		position: '20%',
+		size: {
+			width: 160,
+			height: 160,
+		},
+		xOffset: -230,
+	})
+
+	// California elements
+	.addElement('california', {
+		avatar: 'hannah',
+		position: '0%',
+		size: {
+			width: 200,
+			height: 200,
+		},
+		xOffset: 50
+	})
+	.addElement('beach', {
+		avatar: 'hannah',
+		position: '12%',
+		size: {
+			width: 200,
+			height: 200,
+		},
+		xOffset: -250
+	})
+	.addElement('disneyland', {
+		avatar: 'hannah',
+		position: '25%',
+		size: {
+			width: 200,
+			height: 200,
+		},
+		xOffset: 60,
+	})
