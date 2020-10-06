@@ -88,3 +88,41 @@ export const mainScene = Scene.init({
 		},
 		xOffset: 60,
 	})
+
+	// Biola elements
+	.addElement('biola_bells', {
+		avatar: 'joseph',
+		position: '47%',
+		size: {
+			width: 200,
+			height: 200,
+		},
+		xOffset: 80,
+	})
+	.addElement('biola_chapel', {
+		avatar: 'hannah',
+		position: '58%',
+		size: {
+			width: 200,
+			height: 200,
+		},
+		xOffset: -340,
+	})
+	.addElement('biola_stewart', {
+		avatar: 'joseph',
+		position: '67%',
+		size: {
+			width: 200,
+			height: 200,
+		},
+		xOffset: 80,
+	})
+	.addElement('biola_fountain', {
+		avatar: 'hannah',
+		position: '76%',
+		size: {
+			width: 200,
+			height: 200,
+		},
+		xOffset: -300,
+	})
