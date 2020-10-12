@@ -31,7 +31,13 @@ export class ScrollManager {
 
 	public observeScroll(): ScrollManager {
 		for (const composedAvatar of this.scene.avatars) {
-			const { path, imageElement, pathMeta, avatar } = composedAvatar;
+			const {
+				path,
+				imageElement,
+				pathMeta,
+				avatar,
+				elements,
+			} = composedAvatar;
 
 			const { x, y } = path.getPointAtLength(0);
 			const triggerElement = document.createElement('div');
@@ -59,6 +65,7 @@ export class ScrollManager {
 			}
 
 			const totalOffset = avatar.offsetTop + this.topOffset;
+
 			gsap.to(imageElement, {
 				motionPath: {
 					path,
@@ -78,6 +85,19 @@ export class ScrollManager {
 				},
 				ease: 'none',
 			});
+
+			for (const element of elements) {
+				gsap.to(element.imageElement, {
+					opacity: 1,
+					translateY: 10,
+					scrollTrigger: {
+						trigger: element.imageElement,
+						start: 'top top+=300',
+						scrub: true,
+						end: `${element.imageElement.getBoundingClientRect().height}`
+					}
+				});
+			}
 		}
 		return this;
 	}

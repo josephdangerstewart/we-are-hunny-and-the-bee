@@ -163,6 +163,7 @@ export class SceneComposer<T extends string> {
 		const point = path.getPointAtLength(pathLength * element.positionPercentage);
 		imageElement.style.top = `${point.y}px`;
 		imageElement.style.left = `${point.x + element.xOffset}px`;
+		imageElement.style.opacity = '0';
 		this.rootElement.appendChild(imageElement);
 
 		return {
