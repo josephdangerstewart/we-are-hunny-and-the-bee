@@ -88,8 +88,13 @@ export class ScrollManager {
 
 			for (const element of elements) {
 				gsap.to(element.imageElement, {
+					startAt: {
+						y: -75,
+						scale: 0.8,
+					},
 					opacity: 1,
-					translateY: 10,
+					y: 0,
+					scale: 1,
 					scrollTrigger: {
 						trigger: element.imageElement,
 						start: 'top top+=300',

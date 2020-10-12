@@ -13,7 +13,7 @@ document.getElementById('play-button').addEventListener('click', () => {
 			y: 'max',
 			autoKill: true,
 		},
-		duration: 30,
+		duration: 45,
 		ease: 'none',
 	})
 });
