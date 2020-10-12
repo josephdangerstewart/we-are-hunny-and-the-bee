@@ -1,11 +1,6 @@
 import { Scene } from './scene';
 import svg from './path.svg';
 
-const avatarSize = {
-	width: 110,
-	height: 110,
-}
-
 export const mainScene = Scene.init({
 	offsetTop: 200,
 	svg,
@@ -13,11 +8,17 @@ export const mainScene = Scene.init({
 })
 	// Avatar definitions
 	.addAvatar('hannah', {
-		size: avatarSize,
+		size: {
+			width: 105,
+			height: 105,
+		},
 		hideOnExit: true,
 	})
 	.addAvatar('joseph', {
-		size: avatarSize,
+		size: {
+			width: 105,
+			height: 105,
+		},
 		hideOnExit: true,
 	})
 	.addAvatar('hannah_joseph', {
@@ -26,8 +27,8 @@ export const mainScene = Scene.init({
 	})
 	.addAvatar('bus', {
 		size: {
-			width: 400,
-			height: 400
+			width: 300,
+			height: 300
 		},
 		offsetTop: -60,
 	})
