@@ -2,6 +2,8 @@ import { Avatar } from './Avatar';
 import { Element } from './Element';
 import { Size } from './Size';
 import { Location } from './Location';
+import { Event } from './Event';
+import { Dayjs } from 'dayjs';
 
 interface SceneOptions {
 	svg: string;
@@ -29,6 +31,14 @@ interface ElementCreationOptions<T extends string> {
 	size?: Size;
 }
 
+interface EventCreationOptions<T extends string> {
+	avatar: T;
+	date: Dayjs;
+	position: string;
+	xOffset?: number;
+	size?: Size;
+}
+
 type Not<T, ExcludedT> = T extends ExcludedT ? never : T;
 
 export class Scene<TAvatarKind extends string> {
@@ -37,6 +47,7 @@ export class Scene<TAvatarKind extends string> {
 	private svg: string;
 	private elements: Record<string, Element[]>;
 	private locations: Record<string, Location[]>;
+	private events: Record<string, Event[]>;
 	private showMotionPath: boolean;
 
 	private constructor(options: SceneOptions) {
@@ -65,7 +76,7 @@ export class Scene<TAvatarKind extends string> {
 
 	public addLocation(locationName: string, options: LocationCreationOptions<TAvatarKind>): Scene<TAvatarKind> {
 		const positionPercentage = this.parsePercentage(options.position);
-		
+
 		const result: Location = {
 			name: locationName,
 			avatar: options.avatar,
@@ -77,6 +88,25 @@ export class Scene<TAvatarKind extends string> {
 			this.locations[options.avatar].push(result);
 		} else {
 			this.locations[options.avatar] = [ result ];
+		}
+
+		return this;
+	}
+
+	public addEvent(eventName: string, options: EventCreationOptions<TAvatarKind>): Scene<TAvatarKind> {
+		const positionPercentage = this.parsePercentage(options.position);
+
+		const result: Event = {
+			name: eventName,
+			date: options.date.format(`MMMM D[${this.getOrdinal(options.date.get('day'))}], YYYY`),
+			positionPercentage,
+			xOffset: options.xOffset ?? 0,
+		}
+
+		if (this.events[options.avatar]) {
+			this.events[options.avatar].push(result);
+		} else {
+			this.events[options.avatar] = [ result ];
 		}
 
 		return this;
@@ -106,7 +136,7 @@ export class Scene<TAvatarKind extends string> {
 		const result = parseInt(match?.[0]) / 100;
 
 		if (isNaN(result)) {
-			throw new Error(`Position could not be parsed as a percentage: ${percentage}`);
+			throw new Error(`Position could not be parsed as a percentage: ${ percentage } `);
 		}
 
 		return result;
@@ -118,6 +148,10 @@ export class Scene<TAvatarKind extends string> {
 
 	public getElements(avatar: string): Element[] {
 		return this.elements[avatar] ?? [];
+	}
+
+	public getEvents(avatar: string): Event[] {
+		return this.events[avatar] ?? [];
 	}
 
 	public getAvatars(): Avatar[] {
@@ -134,5 +168,15 @@ export class Scene<TAvatarKind extends string> {
 
 	public shouldShowMotionPath(): boolean {
 		return this.showMotionPath;
+	}
+
+	private getOrdinal(d: number): string {
+		if (d > 3 && d < 21) return 'th';
+		switch (d % 10) {
+		  case 1:  return 'st';
+		  case 2:  return 'nd';
+		  case 3:  return 'rd';
+		  default: return 'th';
+		}
 	}
 }

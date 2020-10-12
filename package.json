@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"build": "webpack --mode=production",
-	"build:server": "tsc --project server.tsconfig.json",
-	"server": "yarn build:server && node server/dist/index.js",
+    "build": "webpack --mode=production",
+    "build:server": "tsc --project server.tsconfig.json",
+    "server": "yarn build:server && node server/dist/index.js",
     "dev": "webpack --mode=development --watch"
   },
   "author": "",
@@ -16,6 +16,7 @@
     "@types/express": "types/express",
     "@types/gsap": "^1.20.2",
     "@types/node": "^14.11.2",
+    "dayjs": "^1.9.1",
     "express": "^4.17.1",
     "gsap": "^3.5.1",
     "imports-loader": "^0.8.0",
