@@ -1,0 +1,63 @@
+body, html {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+}
+
+#root-container {
+	display: flex;
+	justify-content: center;
+}
+
+#root {
+	position: relative;
+}
+
+#intro-ui {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+#buffer {
+	height: 200px;
+}
+
+#ending-ui {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+#intro-text {
+	margin-bottom: 20px;
+}
+
+#intro-text h1 {
+	text-align: center;
+}
+
+#ampersand {
+	margin: 0 100px;
+}
+
+#hannah-joseph-bio {
+	display: flex;
+	justify-content: center;
+}
+
+.bio {
+	width: 350px;
+	text-align: center;
+}
+
+.bio h2 {
+	margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	font-family: 'Nunito';
+	color: #707070;
+}

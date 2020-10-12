@@ -3,44 +3,26 @@
 	<head>
 		<title>We are Hunny and the Bee</title>
 
-		<style>
-			body, html {
-				padding: 0;
-				margin: 0;
-				height: 100%;
-			}
-
-			#root-container {
-				display: flex;
-				justify-content: center;
-			}
-
-			#root {
-				position: relative;
-			}
-
-			#intro-ui {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				height: 100%;
-			}
-
-			#buffer {
-				height: 200px;
-			}
-
-			#ending-ui {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				height: 100%;
-			}
-		</style>
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/style.css" />
 	</head>
 	<body>
 		<div id="intro-ui">
 			<button id="play-button">Play</button>
+		</div>
+		<div id="intro-text">
+			<h1>Here's the story of us:</h1>
+			<div id="hannah-joseph-bio">
+				<div class="bio">
+					<h2>Hannah</h2>
+					<p>an artist from Anaheim, California who loves Jesus, people, and Pokemon</p>
+				</div>
+				<h2 id="ampersand">&</h2>
+				<div class="bio">
+					<h2>Joseph</h2>
+					<p>a programmer from Henderson, Nevada who loves Jesus, people, and Minecraft</p>
+				</div>
+			</div>
 		</div>
 		<div id="root-container">
 			<div id="root"></div>
