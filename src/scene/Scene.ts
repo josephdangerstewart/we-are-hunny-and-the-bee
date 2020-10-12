@@ -1,6 +1,7 @@
 import { Avatar } from './Avatar';
 import { Element } from './Element';
 import { Size } from './Size';
+import { Location } from './Location';
 
 interface SceneOptions {
 	svg: string;
@@ -13,6 +14,12 @@ interface AvatarCreationOptions {
 	offsetTop?: number;
 	hideOnExit?: boolean;
 	initiallyHidden?: boolean;
+}
+
+interface LocationCreationOptions<T extends string> {
+	position: string;
+	xOffset?: number;
+	avatar: T;
 }
 
 interface ElementCreationOptions<T extends string> {
@@ -29,6 +36,7 @@ export class Scene<TAvatarKind extends string> {
 	private offsetTop: number;
 	private svg: string;
 	private elements: Record<string, Element[]>;
+	private locations: Record<string, Location[]>;
 	private showMotionPath: boolean;
 
 	private constructor(options: SceneOptions) {
@@ -54,13 +62,27 @@ export class Scene<TAvatarKind extends string> {
 		return this;
 	}
 
-	public addElement(name: string, element: ElementCreationOptions<TAvatarKind>): Scene<TAvatarKind> {
-		const positionPercentage = parseInt(/(\d+)\s*%/.exec(element.position)[1]) / 100;
-
-		if (isNaN(positionPercentage)) {
-			throw new Error(`Position could not be parsed as a percentage: ${element.position}`);
+	public addLocation(locationName: string, options: LocationCreationOptions<TAvatarKind>): Scene<TAvatarKind> {
+		const positionPercentage = this.parsePercentage(options.position);
+		
+		const result: Location = {
+			name: locationName,
+			avatar: options.avatar,
+			xOffset: options.xOffset ?? 0,
+			positionPercentage,
 		}
 
+		if (this.locations[options.avatar]) {
+			this.locations[options.avatar].push(result);
+		} else {
+			this.locations[options.avatar] = [ result ];
+		}
+
+		return this;
+	}
+
+	public addElement(name: string, element: ElementCreationOptions<TAvatarKind>): Scene<TAvatarKind> {
+		const positionPercentage = this.parsePercentage(element.position);
 		const result: Element = {
 			name,
 			avatar: element.avatar,
@@ -76,6 +98,17 @@ export class Scene<TAvatarKind extends string> {
 		}
 
 		return this;
+	}
+
+	private parsePercentage(percentage: string): number {
+		const match = /(\d+)\s*%/.exec(percentage);
+		const result = parseInt(match?.[0]) / 100;
+
+		if (isNaN(result)) {
+			throw new Error(`Position could not be parsed as a percentage: ${percentage}`);
+		}
+
+		return result;
 	}
 
 	public getElements(avatar: string): Element[] {
