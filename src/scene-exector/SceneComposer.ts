@@ -1,5 +1,6 @@
-import { Scene, Avatar, Element } from '../scene';
+import { Scene, Avatar, Element, Location } from '../scene';
 import { IdConflictError, MissingPathException } from './errors';
+import mapIcon from './map-icon.svg';
 
 const getAvatarPath = (n: string) => `/images/avatars/${n}.png`;
 const getElementPath = (n: string) => `/images/elements/${n}.png`;
@@ -15,7 +16,12 @@ export interface ComposedAvatar {
 	pathMeta: PathMeta;
 	imageElement: HTMLImageElement;
 	elements: ComposedElement[];
-	uiTextElement?: HTMLDivElement;
+	locations: ComposedLocation[];
+}
+
+export interface ComposedLocation {
+	location: Location;
+	containerElement: HTMLDivElement;
 }
 
 export interface ComposedElement {
@@ -67,9 +73,8 @@ export class SceneComposer<T extends string> {
 	}
 
 	private loadSvg(): SVGElement {
-		const parser = new DOMParser();
-		const svgElement = parser.parseFromString(this.scene.getSvg(), 'image/svg+xml').documentElement as unknown as SVGElement;
-		
+		const svgElement = this.parseSvg(this.scene.getSvg());
+
 		if (!this.scene.shouldShowMotionPath()) {
 			svgElement.style.visibility = 'hidden';
 		}
@@ -126,6 +131,11 @@ export class SceneComposer<T extends string> {
 				.getElements(avatar.name)
 				.map(e => this.mapElement(e, path, pathLength));
 
+			// Compose the location text for this avatar
+			const locations: ComposedLocation[] = this.scene
+				.getLocations(avatar.name)
+				.map(e => this.mapLocation(e, path, pathLength));
+
 			return {
 				imageElement: element,
 				path,
@@ -135,6 +145,7 @@ export class SceneComposer<T extends string> {
 					height: pathHeight,
 				},
 				elements,
+				locations,
 			};
 		});
 	}
@@ -178,5 +189,44 @@ export class SceneComposer<T extends string> {
 			imageElement,
 			element,
 		};
+	}
+
+	private mapLocation(location: Location, path: SVGPathElement, pathLength: number): ComposedLocation {
+		const container = document.createElement('div');
+		container.style.position = 'absolute';
+		container.style.display = 'flex';
+		container.style.alignItems = 'center';
+		const point = path.getPointAtLength(pathLength * location.positionPercentage);
+		container.style.top = `${point.y}px`;
+		container.style.left = `${point.x + location.xOffset}px`;
+		container.style.opacity = '0';
+
+		const locationPin = this.parseSvg(mapIcon);
+		locationPin.style.width = '40px';
+		locationPin.style.height = '40px';
+		locationPin.style.color = '#D63333';
+		locationPin.style.marginRight = '12px';
+
+		const locationTitleElement = document.createElement('h3');
+		locationTitleElement.innerText = location.name;
+		locationTitleElement.style.whiteSpace = 'nowrap';
+		locationTitleElement.style.margin = '0';
+		locationTitleElement.style.fontSize = '32px';
+		
+		container.appendChild(locationPin);
+		container.appendChild(locationTitleElement);
+
+		this.rootElement.appendChild(container);
+
+		console.log(container);
+		return {
+			location,
+			containerElement: container,
+		};
+	}
+
+	private parseSvg(svgString: string): SVGElement {
+		const parser = new DOMParser();
+		return parser.parseFromString(svgString, 'image/svg+xml').documentElement as unknown as SVGElement;
 	}
 }

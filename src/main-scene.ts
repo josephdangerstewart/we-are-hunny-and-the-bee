@@ -92,6 +92,11 @@ export const mainScene = Scene.init({
 	})
 
 	// Biola elements
+	.addLocation('Biola University', {
+		avatar: 'joseph',
+		position: '90%',
+		xOffset: 100,
+	})
 	.addElement('biola_stewart', {
 		avatar: 'bus',
 		position: '0%',

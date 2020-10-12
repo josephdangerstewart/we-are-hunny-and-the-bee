@@ -37,6 +37,7 @@ export class ScrollManager {
 				pathMeta,
 				avatar,
 				elements,
+				locations,
 			} = composedAvatar;
 
 			const { x, y } = path.getPointAtLength(0);
@@ -102,6 +103,24 @@ export class ScrollManager {
 						end: `${element.imageElement.getBoundingClientRect().height}`
 					}
 				});
+			}
+
+			for (const location of locations) {
+				gsap.to(location.containerElement, {
+					startAt: {
+						y: -75,
+						scale: 0.8,
+					},
+					opacity: 1,
+					y: 0,
+					scale: 1,
+					scrollTrigger: {
+						trigger: location.containerElement,
+						start: 'top top+=300',
+						scrub: true,
+						end: `${location.containerElement.getBoundingClientRect().height}`
+					}
+				})
 			}
 		}
 		return this;

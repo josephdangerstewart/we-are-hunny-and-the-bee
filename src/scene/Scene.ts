@@ -44,6 +44,7 @@ export class Scene<TAvatarKind extends string> {
 		this.avatars = [];
 		this.svg = options.svg;
 		this.elements = {};
+		this.locations = {};
 		this.showMotionPath = options.showMotionPath
 	}
 
@@ -109,6 +110,10 @@ export class Scene<TAvatarKind extends string> {
 		}
 
 		return result;
+	}
+
+	public getLocations(avatar: string): Location[] {
+		return this.locations[avatar] ?? [];
 	}
 
 	public getElements(avatar: string): Element[] {
