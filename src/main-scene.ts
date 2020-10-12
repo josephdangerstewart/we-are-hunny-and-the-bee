@@ -38,28 +38,28 @@ export const mainScene = Scene.init({
 		avatar: 'joseph',
 		position: '0%',
 		size: {
-			width: 200,
-			height: 200,
+			width: 250,
+			height: 250,
 		},
-		xOffset: -250,
+		xOffset: 50,
 	})
 	.addElement('vegas_sign', {
 		avatar: 'joseph',
-		position: '8%',
+		position: '30%',
 		size: {
-			width: 200,
-			height: 200,
+			width: 250,
+			height: 250,
 		},
-		xOffset: 40,
+		xOffset: 80,
 	})
 	.addElement('redrock', {
 		avatar: 'joseph',
-		position: '20%',
+		position: '60%',
 		size: {
-			width: 160,
-			height: 160,
+			width: 225,
+			height: 225,
 		},
-		xOffset: -230,
+		xOffset: 70,
 	})
 
 	// California elements
@@ -67,64 +67,64 @@ export const mainScene = Scene.init({
 		avatar: 'hannah',
 		position: '0%',
 		size: {
-			width: 200,
-			height: 200,
+			width: 250,
+			height: 250,
 		},
-		xOffset: 50
+		xOffset: -270
 	})
 	.addElement('beach', {
 		avatar: 'hannah',
-		position: '12%',
+		position: '25%',
 		size: {
-			width: 200,
-			height: 200,
+			width: 250,
+			height: 250,
 		},
-		xOffset: -250
+		xOffset: -330
 	})
 	.addElement('disneyland', {
 		avatar: 'hannah',
-		position: '25%',
+		position: '50%',
 		size: {
-			width: 200,
-			height: 200,
+			width: 250,
+			height: 250,
 		},
-		xOffset: 60,
+		xOffset: -305,
 	})
 
 	// Biola elements
-	.addElement('biola_bells', {
-		avatar: 'joseph',
-		position: '47%',
-		size: {
-			width: 200,
-			height: 200,
-		},
-		xOffset: 80,
-	})
-	.addElement('biola_chapel', {
-		avatar: 'hannah',
-		position: '58%',
-		size: {
-			width: 200,
-			height: 200,
-		},
-		xOffset: -340,
-	})
 	.addElement('biola_stewart', {
-		avatar: 'joseph',
-		position: '67%',
+		avatar: 'bus',
+		position: '0%',
 		size: {
-			width: 200,
-			height: 200,
+			width: 250,
+			height: 250,
 		},
-		xOffset: 80,
+		xOffset: -550,
+	})
+	.addElement('biola_bells', {
+		avatar: 'bus',
+		position: '30%',
+		size: {
+			width: 225,
+			height: 225,
+		},
+		xOffset: 300,
 	})
 	.addElement('biola_fountain', {
-		avatar: 'hannah',
-		position: '76%',
+		avatar: 'bus',
+		position: '65%',
 		size: {
-			width: 200,
-			height: 200,
+			width: 250,
+			height: 250,
 		},
-		xOffset: -300,
+		xOffset: -400,
+	})
+	.addElement('biola_chapel', {
+		avatar: 'bus',
+		position: '150%',
+		size: {
+			width: 275,
+			height: 275,
+		},
+		xOffset: 250,
 	})
