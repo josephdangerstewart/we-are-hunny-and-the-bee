@@ -94,7 +94,7 @@ export const mainScene = Scene.init({
 	// Biola elements
 	.addLocation('Biola University', {
 		avatar: 'joseph',
-		position: '90%',
+		position: '85%',
 		xOffset: 100,
 	})
 	.addElement('biola_stewart', {
@@ -126,7 +126,7 @@ export const mainScene = Scene.init({
 	})
 	.addElement('biola_chapel', {
 		avatar: 'bus',
-		position: '150%',
+		position: '100%',
 		size: {
 			width: 275,
 			height: 275,
