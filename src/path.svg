@@ -1,9 +1,28 @@
-<svg width="800" height="4000" xmlns="http://www.w3.org/2000/svg">
- <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
- <g>
-  <path stroke="#000" id="hannah" d="m92.73978,16c-1.51673,189.44871 66.9676,521.24475 143.07042,700.38272c76.66695,170.9787 119.04781,383.49697 131.90457,619.75218" stroke-width="1.5" fill="#fff"/>
-  <path stroke="#000" id="joseph" d="m680.08001,16c1.41828,188.29891 -62.62078,518.08122 -133.78382,696.13197c-71.69055,169.941 -111.3205,381.16946 -123.34274,615.99079" stroke-width="1.5" fill="#fff"/>
-  <line stroke-linecap="null" stroke-linejoin="null" id="bus" y2="1596.24085" x2="391.91167" y1="1193.37944" x1="390.95928" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"/>
-  <line stroke="#000" stroke-linecap="null" stroke-linejoin="null" id="hannah_joseph" y2="3972.67707" x2="395.47331" y1="1328.08047" x1="395.08096" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" fill="none"/>
- </g>
+<svg xmlns="http://www.w3.org/2000/svg" height="6509px" width="588">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #000;
+        stroke-width: 1.5px;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g>
+        <path id="hannah" class="cls-1" d="M.77,0c-1.51,189.44,67,521.24,143.08,700.38,76.66,171,119,383.5,131.9,619.75"/>
+        <path id="joseph" class="cls-1" d="M588.11,0c1.42,188.29-62.62,518.08-133.78,696.13C382.64,866.08,343,1077.31,331,1312.13"/>
+        <line id="bus" class="cls-2" x1="298.99" y1="1177.39" x2="299.95" y2="1580.25"/>
+        <line id="hannah_joseph" data-name="hannah joseph" class="cls-2" x1="302.93" y1="1312.09" x2="303.7" y2="6492.75"/>
+      </g>
+    </g>
+  </g>
 </svg>
