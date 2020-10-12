@@ -5,6 +5,7 @@ import { Size } from './Size';
 interface SceneOptions {
 	svg: string;
 	offsetTop?: number;
+	showMotionPath?: boolean;
 }
 
 interface AvatarCreationOptions {
@@ -28,12 +29,14 @@ export class Scene<TAvatarKind extends string> {
 	private offsetTop: number;
 	private svg: string;
 	private elements: Record<string, Element[]>;
+	private showMotionPath: boolean;
 
 	private constructor(options: SceneOptions) {
 		this.offsetTop = options.offsetTop ?? 0;
 		this.avatars = [];
 		this.svg = options.svg;
 		this.elements = {};
+		this.showMotionPath = options.showMotionPath
 	}
 
 	public static init(options: SceneOptions): Scene<undefined> {
@@ -89,5 +92,9 @@ export class Scene<TAvatarKind extends string> {
 
 	public getSvg(): string {
 		return this.svg;
+	}
+
+	public shouldShowMotionPath(): boolean {
+		return this.showMotionPath;
 	}
 }

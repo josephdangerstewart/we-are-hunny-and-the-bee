@@ -15,6 +15,7 @@ export interface ComposedAvatar {
 	pathMeta: PathMeta;
 	imageElement: HTMLImageElement;
 	elements: ComposedElement[];
+	uiTextElement?: HTMLDivElement;
 }
 
 export interface ComposedElement {
@@ -68,7 +69,11 @@ export class SceneComposer<T extends string> {
 	private loadSvg(): SVGElement {
 		const parser = new DOMParser();
 		const svgElement = parser.parseFromString(this.scene.getSvg(), 'image/svg+xml').documentElement as unknown as SVGElement;
-		svgElement.style.visibility = 'hidden';
+		
+		if (!this.scene.shouldShowMotionPath()) {
+			svgElement.style.visibility = 'hidden';
+		}
+
 		this.rootElement.appendChild(svgElement);
 		return svgElement;
 	}
@@ -89,6 +94,7 @@ export class SceneComposer<T extends string> {
 			}, {});
 
 		return avatars.map((avatar) => {
+			// Get path and calculate path metadata
 			const path = pathsById[avatar.name];
 			if (!path) {
 				throw new MissingPathException(avatar.name);
@@ -96,24 +102,26 @@ export class SceneComposer<T extends string> {
 			const pathLength = path.getTotalLength();
 			const pathHeight = path.getBoundingClientRect().height;
 
+			// Create the image element for the avatar
 			const element = document.createElement('img');
 			element.src = getAvatarPath(avatar.name);
 
+			// Move image element to starting position
 			element.style.position = 'absolute';
 			const startingPoint = path.getPointAtLength(0);
+			this.rootElement.appendChild(element);
+			element.style.top = `${startingPoint.y}px`;
+			const { width, top, left } = element.getBoundingClientRect();
+			element.style.left = `${startingPoint.x - (width / 2)}px`;
+
+			// Set default styles
 			element.style.width = avatar.size?.width && `${avatar.size?.width}px`;
 			element.style.height = avatar.size?.height && `${avatar.size?.height}px`;
-
 			if (avatar.initiallyHidden) {
 				element.style.visibility = 'hidden';
 			}
 
-			this.rootElement.appendChild(element);
-			const { width } = element.getBoundingClientRect();
-
-			element.style.top = `${startingPoint.y}px`;
-			element.style.left = `${startingPoint.x - (width / 2)}px`;
-
+			// Compose elements for this avatar
 			const elements: ComposedElement[] = this.scene
 				.getElements(avatar.name)
 				.map(e => this.mapElement(e, path, pathLength));
