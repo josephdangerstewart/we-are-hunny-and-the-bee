@@ -1,4 +1,4 @@
-import { Scene, Avatar, Element, Location } from '../scene';
+import { Scene, Avatar, Element, Location, Event } from '../scene';
 import { IdConflictError, MissingPathException } from './errors';
 import mapIcon from './map-icon.svg';
 
@@ -17,10 +17,16 @@ export interface ComposedAvatar {
 	imageElement: HTMLImageElement;
 	elements: ComposedElement[];
 	locations: ComposedLocation[];
+	events: ComposedEvent[];
 }
 
 export interface ComposedLocation {
 	location: Location;
+	containerElement: HTMLDivElement;
+}
+
+export interface ComposedEvent {
+	event: Event,
 	containerElement: HTMLDivElement;
 }
 
@@ -136,6 +142,10 @@ export class SceneComposer<T extends string> {
 				.getLocations(avatar.name)
 				.map(e => this.mapLocation(e, path, pathLength));
 
+			const events: ComposedEvent[] = this.scene
+				.getEvents(avatar.name)
+				.map(e => this.mapEvent(e, path, pathLength));
+
 			return {
 				imageElement: element,
 				path,
@@ -146,6 +156,7 @@ export class SceneComposer<T extends string> {
 				},
 				elements,
 				locations,
+				events,
 			};
 		});
 	}
@@ -221,6 +232,36 @@ export class SceneComposer<T extends string> {
 		console.log(container);
 		return {
 			location,
+			containerElement: container,
+		};
+	}
+
+	private mapEvent(event: Event, path: SVGPathElement, pathLength: number): ComposedEvent {
+		const container = document.createElement('div');
+		container.style.position = 'absolute';
+		const point = path.getPointAtLength(pathLength * event.positionPercentage);
+		container.style.top = `${point.y}px`;
+		container.style.left = `${point.x + event.xOffset}px`;
+		container.style.opacity = '0';
+
+		const titleElement = document.createElement('h3');
+		titleElement.innerText = event.name;
+		titleElement.style.margin = '0';
+		titleElement.style.fontSize = '36px';
+
+		const dateElement = document.createElement('p');
+		dateElement.innerText = event.date;
+		dateElement.style.fontSize = '28px';
+		dateElement.style.margin = '0';
+
+		container.appendChild(titleElement);
+		container.appendChild(dateElement);
+
+		this.rootElement.appendChild(container);
+
+		console.log(container);
+		return {
+			event,
 			containerElement: container,
 		};
 	}

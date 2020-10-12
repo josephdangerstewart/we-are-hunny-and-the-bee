@@ -1,5 +1,6 @@
 import { Scene } from './scene';
 import svg from './path.svg';
+import dayjs from 'dayjs';
 
 export const mainScene = Scene.init({
 	offsetTop: 200,
@@ -43,7 +44,7 @@ export const mainScene = Scene.init({
 		},
 		xOffset: 50,
 	})
-	.addElement('vegas_sign', {
+	.addElement('redrock', {
 		avatar: 'joseph',
 		position: '30%',
 		size: {
@@ -52,7 +53,7 @@ export const mainScene = Scene.init({
 		},
 		xOffset: 80,
 	})
-	.addElement('redrock', {
+	.addElement('vegas_sign', {
 		avatar: 'joseph',
 		position: '60%',
 		size: {
@@ -96,6 +97,12 @@ export const mainScene = Scene.init({
 		avatar: 'joseph',
 		position: '85%',
 		xOffset: 100,
+	})
+	.addEvent('When we first met...', {
+		date: dayjs('08/22/2016'),
+		avatar: 'hannah',
+		position: '79%',
+		xOffset: -450,
 	})
 	.addElement('biola_stewart', {
 		avatar: 'bus',

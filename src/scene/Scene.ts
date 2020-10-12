@@ -3,7 +3,10 @@ import { Element } from './Element';
 import { Size } from './Size';
 import { Location } from './Location';
 import { Event } from './Event';
-import { Dayjs } from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+import dayjs, { Dayjs } from 'dayjs';
+
+dayjs.extend(advancedFormat);
 
 interface SceneOptions {
 	svg: string;
@@ -56,6 +59,7 @@ export class Scene<TAvatarKind extends string> {
 		this.svg = options.svg;
 		this.elements = {};
 		this.locations = {};
+		this.events = {};
 		this.showMotionPath = options.showMotionPath
 	}
 
@@ -98,7 +102,7 @@ export class Scene<TAvatarKind extends string> {
 
 		const result: Event = {
 			name: eventName,
-			date: options.date.format(`MMMM D[${this.getOrdinal(options.date.get('day'))}], YYYY`),
+			date: options.date.format(`MMMM Do, YYYY`),
 			positionPercentage,
 			xOffset: options.xOffset ?? 0,
 		}
@@ -168,15 +172,5 @@ export class Scene<TAvatarKind extends string> {
 
 	public shouldShowMotionPath(): boolean {
 		return this.showMotionPath;
-	}
-
-	private getOrdinal(d: number): string {
-		if (d > 3 && d < 21) return 'th';
-		switch (d % 10) {
-		  case 1:  return 'st';
-		  case 2:  return 'nd';
-		  case 3:  return 'rd';
-		  default: return 'th';
-		}
 	}
 }
