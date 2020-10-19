@@ -19,6 +19,7 @@ body, html {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
+	flex-direction: column;
 }
 
 #buffer {
@@ -61,4 +62,23 @@ body, html {
 h1, h2, h3, h4, h5, h6, p {
 	font-family: 'Nunito';
 	color: #707070;
+}
+
+.logo.hero {
+	width: 450px;
+	margin-bottom: 25px;
+}
+
+#play-button {
+	border: solid 6px #000000;
+	padding: 8px 50px;
+	border-radius: 40px;
+	background-color: rgba(0, 0, 0, 0);
+	cursor: pointer;
+	transition: background-color .2s;
+	outline: none;
+}
+
+#play-button:hover {
+	background-color: #F7E477;
 }
