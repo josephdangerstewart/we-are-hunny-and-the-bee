@@ -193,7 +193,6 @@ export class SceneComposer<T extends string> {
 		const point = path.getPointAtLength(pathLength * element.positionPercentage);
 		imageElement.style.top = `${point.y}px`;
 		imageElement.style.left = `${point.x + element.xOffset}px`;
-		imageElement.style.opacity = '0';
 		this.rootElement.appendChild(imageElement);
 
 		return {
@@ -210,7 +209,6 @@ export class SceneComposer<T extends string> {
 		const point = path.getPointAtLength(pathLength * location.positionPercentage);
 		container.style.top = `${point.y}px`;
 		container.style.left = `${point.x + location.xOffset}px`;
-		container.style.opacity = '0';
 
 		const locationPin = this.parseSvg(mapIcon);
 		locationPin.style.width = '40px';
@@ -242,7 +240,6 @@ export class SceneComposer<T extends string> {
 		const point = path.getPointAtLength(pathLength * event.positionPercentage);
 		container.style.top = `${point.y}px`;
 		container.style.left = `${point.x + event.xOffset}px`;
-		container.style.opacity = '0';
 
 		const titleElement = document.createElement('h3');
 		titleElement.innerText = event.name;

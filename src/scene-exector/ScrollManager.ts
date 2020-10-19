@@ -91,14 +91,6 @@ export class ScrollManager {
 			for (const element of elements) {
 				this.animateElement(element.imageElement);
 			}
-
-			for (const location of locations) {
-				this.animateElement(location.containerElement);
-			}
-
-			for (const event of events) {
-				this.animateElement(event.containerElement);
-			}
 		}
 		return this;
 	}
@@ -108,6 +100,7 @@ export class ScrollManager {
 			startAt: {
 				y: -75,
 				scale: 0.8,
+				opacity: 0,
 			},
 			opacity: 1,
 			y: 0,
