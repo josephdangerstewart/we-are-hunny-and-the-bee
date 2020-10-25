@@ -1,6 +1,10 @@
+import dayjs from 'dayjs';
 import { Scene, Size } from './scene';
 import svg from './path.svg';
-import dayjs from 'dayjs';
+
+import {
+	hannahAnimations,
+} from './animations';
 
 function size(width: number, height = width): Size {
 	return { width, height };
@@ -15,6 +19,12 @@ export const mainScene = Scene.init({
 	.addAvatar('hannah', {
 		size: size(105),
 		hideOnExit: true,
+		animations: [
+			{
+				startAt: '0%',
+				frames: hannahAnimations.walkingNormal
+			},
+		]
 	})
 	.addAvatar('joseph', {
 		size: size(105),

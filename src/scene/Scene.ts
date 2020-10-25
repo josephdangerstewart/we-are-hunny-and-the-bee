@@ -14,11 +14,17 @@ interface SceneOptions {
 	showMotionPath?: boolean;
 }
 
+interface AnimationCreationOptions {
+	startAt: string;
+	frames: string[];
+}
+
 interface AvatarCreationOptions {
 	size: Size;
 	offsetTop?: number;
 	hideOnExit?: boolean;
 	initiallyHidden?: boolean;
+	animations?: AnimationCreationOptions[];
 }
 
 interface LocationCreationOptions<T extends string> {
@@ -76,6 +82,10 @@ export class Scene<TAvatarKind extends string> {
 			initiallyHidden: options.initiallyHidden ?? false,
 			offsetTop: options.offsetTop ?? 0,
 			hideOnExit: options.hideOnExit ?? false,
+			animations: options.animations.map(x => ({
+				startPositionPercentage: this.parsePercentage(x.startAt),
+				frames: x.frames,
+			})),
 		});
 		return this;
 	}

@@ -1,4 +1,5 @@
 import { Size } from './Size';
+import { Animation } from './Animation';
 
 export interface Avatar {
 	name: string;
@@ -6,4 +7,5 @@ export interface Avatar {
 	initiallyHidden: boolean;
 	offsetTop: number;
 	hideOnExit: boolean;
+	animations?: Animation[];
 }
