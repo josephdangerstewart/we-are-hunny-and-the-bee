@@ -206,30 +206,30 @@ export const mainScene = Scene.init({
 	// Proposal
 	.addEvent('When we got engaged...', {
 		avatar: 'hannah_joseph',
-		position: '58%',
+		position: '81%',
 		date: dayjs('2017-04-15'),
 		xOffset: -400
 	})
 	.addLocation('Los Angeles', {
 		avatar: 'hannah_joseph',
-		position: '60%',
+		position: '83%',
 		xOffset: 125,
 	})
 	.addElement('la_griffith', {
 		avatar: 'hannah_joseph',
-		position: '62%',
+		position: '85%',
 		size: size(290),
 		xOffset: -350,
 	})
 	.addElement('la_skyline', {
 		avatar: 'hannah_joseph',
-		position: '63%',
+		position: '86%',
 		size: size(375),
 		xOffset: 150,
 	})
 	.addElement('la_lamppost', {
 		avatar: 'hannah_joseph',
-		position: '67%',
+		position: '90%',
 		size: size(300),
 		xOffset: -550,
 	})
