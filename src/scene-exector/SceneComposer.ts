@@ -1,9 +1,11 @@
 import { Scene, Avatar, Element, Location, Event } from '../scene';
 import { IdConflictError, MissingPathException } from './errors';
 import mapIcon from './map-icon.svg';
+import { preloadImage } from './preloadImage';
 
 const getAvatarPath = (n: string) => `/images/avatars/${n}.png`;
 const getElementPath = (n: string) => `/images/elements/${n}.png`;
+const getAnimationPath = (n: string) => `/images/avatars/animations/${n}.png`;
 
 const zIndexes = {
 	belowAvatar: 0,
@@ -129,7 +131,7 @@ export class SceneComposer<T extends string> {
 			const startingPoint = path.getPointAtLength(0);
 			this.rootElement.appendChild(element);
 			element.style.top = `${startingPoint.y}px`;
-			const { width, top, left } = element.getBoundingClientRect();
+			const { width } = element.getBoundingClientRect();
 			element.style.left = `${startingPoint.x - (width / 2)}px`;
 
 			// Set default styles
@@ -153,10 +155,26 @@ export class SceneComposer<T extends string> {
 				.getEvents(avatar.name)
 				.map(e => this.mapEvent(e, path, pathLength));
 
+			if (avatar.animations) {
+				for (const animation of avatar.animations) {
+					for (const frame of animation.frames) {
+						preloadImage(frame);
+					}
+				}
+			}
+
 			return {
 				imageElement: element,
 				path,
-				avatar,
+				avatar: {
+					...avatar,
+					animations: avatar?.animations?.map(x => ({
+						...x,
+						frames: x
+							.frames
+							.map(x => x === 'NORMAL' ? getAvatarPath(avatar.name) : getAnimationPath(x)),
+					}))
+				},
 				pathMeta: {
 					length: pathLength,
 					height: pathHeight,

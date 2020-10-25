@@ -12,5 +12,5 @@ export const hannahAnimations = {
 		'walking_hannah_right_3',
 		'walking_hannah_right_2',
 		'walking_hannah_right_1',
-	]
+	],
 }

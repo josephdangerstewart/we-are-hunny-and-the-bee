@@ -2,9 +2,14 @@ import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ComposedScene } from './SceneComposer';
+import { Avatar } from '../scene/Avatar';
 
 gsap.registerPlugin(MotionPathPlugin);
 gsap.registerPlugin(ScrollTrigger);
+
+// How long (measured in pixels of vertical scroll) an animation frame stays before
+// changing to next frame
+const FRAME_DURATION = 5;
 
 interface ScrollManagerOptions {
 	scene: ComposedScene;
@@ -37,8 +42,6 @@ export class ScrollManager {
 				pathMeta,
 				avatar,
 				elements,
-				locations,
-				events,
 			} = composedAvatar;
 
 			const { x, y } = path.getPointAtLength(0);
@@ -84,6 +87,7 @@ export class ScrollManager {
 					onEnterBack: onStart,
 					onLeave: onEnd,
 					onLeaveBack: onReset,
+					onUpdate: this.getAvatarKeyframeAnimation(imageElement, avatar, pathMeta.length),
 				},
 				ease: 'none',
 			});
@@ -114,5 +118,34 @@ export class ScrollManager {
 				end: `${element.getBoundingClientRect().height}`
 			}
 		})
+	}
+
+	private getAvatarKeyframeAnimation(image: HTMLImageElement, avatar: Avatar, pathLength: number): (scrollTrigger: gsap.plugins.ScrollTriggerInstance) => void {
+		if (!avatar.animations) {
+			return undefined;
+		}
+
+		const animationsByStart = avatar
+			.animations
+			.sort((a, b) => {
+				return b.startPositionPercentage - a.startPositionPercentage;
+			});
+		console.log(animationsByStart);
+
+		return (instance) => {
+			const currentAnimation = animationsByStart.find(x => instance.progress >= x.startPositionPercentage);
+
+			if (!currentAnimation) {
+				return;
+			}
+			
+			const pixelsFromTop = pathLength * instance.progress;
+			const frameCount = currentAnimation.frames.length;
+			const scrollFraction = (pixelsFromTop % 75) / 75;
+			const frameIndex = Math.ceil(scrollFraction * frameCount) % frameCount;
+
+			const frame = currentAnimation.frames[frameIndex];
+			image.src = frame;
+		}
 	}
 }

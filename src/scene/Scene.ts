@@ -82,7 +82,7 @@ export class Scene<TAvatarKind extends string> {
 			initiallyHidden: options.initiallyHidden ?? false,
 			offsetTop: options.offsetTop ?? 0,
 			hideOnExit: options.hideOnExit ?? false,
-			animations: options.animations.map(x => ({
+			animations: options.animations?.map(x => ({
 				startPositionPercentage: this.parsePercentage(x.startAt),
 				frames: x.frames,
 			})),
