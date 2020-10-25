@@ -89,7 +89,9 @@ export class ScrollManager {
 			});
 
 			for (const element of elements) {
-				this.animateElement(element.imageElement);
+				if (!element.element.disableAnimation) {
+					this.animateElement(element.imageElement);
+				}
 			}
 		}
 		return this;

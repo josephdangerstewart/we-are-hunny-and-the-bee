@@ -23,4 +23,14 @@ export interface Element {
 	name: string;
 
 	size?: Size;
+
+	/**
+	 * @description If true, the element will not animate in
+	 */
+	disableAnimation: boolean;
+
+	/**
+	 * @description if true, the element will appear in front of the avatar layer
+	 */
+	showInFrontOfAvatar: boolean;
 }

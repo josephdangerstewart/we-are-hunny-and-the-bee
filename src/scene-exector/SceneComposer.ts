@@ -5,6 +5,12 @@ import mapIcon from './map-icon.svg';
 const getAvatarPath = (n: string) => `/images/avatars/${n}.png`;
 const getElementPath = (n: string) => `/images/elements/${n}.png`;
 
+const zIndexes = {
+	belowAvatar: 0,
+	avatar: 10,
+	aboveAvatar: 20,
+}
+
 export interface PathMeta {
 	length: number;
 	height: number;
@@ -116,6 +122,7 @@ export class SceneComposer<T extends string> {
 			// Create the image element for the avatar
 			const element = document.createElement('img');
 			element.src = getAvatarPath(avatar.name);
+			element.style.zIndex = `${zIndexes.avatar}`;
 
 			// Move image element to starting position
 			element.style.position = 'absolute';
@@ -193,6 +200,8 @@ export class SceneComposer<T extends string> {
 		const point = path.getPointAtLength(pathLength * element.positionPercentage);
 		imageElement.style.top = `${point.y}px`;
 		imageElement.style.left = `${point.x + element.xOffset}px`;
+		const zIndex = element?.showInFrontOfAvatar ? zIndexes.aboveAvatar : zIndexes.belowAvatar;
+		imageElement.style.zIndex = `${zIndex}`;
 		this.rootElement.appendChild(imageElement);
 
 		return {
@@ -209,6 +218,7 @@ export class SceneComposer<T extends string> {
 		const point = path.getPointAtLength(pathLength * location.positionPercentage);
 		container.style.top = `${point.y}px`;
 		container.style.left = `${point.x + location.xOffset}px`;
+		container.style.zIndex = `${zIndexes.belowAvatar}`;
 
 		const locationPin = this.parseSvg(mapIcon);
 		locationPin.style.width = '40px';
@@ -240,6 +250,7 @@ export class SceneComposer<T extends string> {
 		const point = path.getPointAtLength(pathLength * event.positionPercentage);
 		container.style.top = `${point.y}px`;
 		container.style.left = `${point.x + event.xOffset}px`;
+		container.style.zIndex = `${zIndexes.belowAvatar}`;
 
 		const titleElement = document.createElement('h3');
 		titleElement.innerText = event.name;

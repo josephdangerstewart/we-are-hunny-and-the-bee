@@ -167,9 +167,14 @@ export const mainScene = Scene.init({
 		avatar: 'hannah_joseph',
 		position: '98%',
 		size: size(300),
+		xOffset: -150,
+		showInFrontOfAvatar: true,
+		disableAnimation: true,
 	})
 	.addElement('wedding_platform', {
 		avatar: 'hannah_joseph',
 		position: '98%',
 		size: size(300),
+		xOffset: -150,
+		disableAnimation: true,
 	});
