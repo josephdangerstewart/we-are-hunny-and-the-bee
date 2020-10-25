@@ -231,6 +231,7 @@ export class SceneComposer<T extends string> {
 		locationTitleElement.style.whiteSpace = 'nowrap';
 		locationTitleElement.style.margin = '0';
 		locationTitleElement.style.fontSize = '32px';
+		locationTitleElement.style.textTransform = 'uppercase';
 		
 		container.appendChild(locationPin);
 		container.appendChild(locationTitleElement);
@@ -251,6 +252,7 @@ export class SceneComposer<T extends string> {
 		container.style.top = `${point.y}px`;
 		container.style.left = `${point.x + event.xOffset}px`;
 		container.style.zIndex = `${zIndexes.belowAvatar}`;
+		container.style.maxWidth = '350px';
 
 		const titleElement = document.createElement('h3');
 		titleElement.innerText = event.name;

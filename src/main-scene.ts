@@ -110,7 +110,7 @@ export const mainScene = Scene.init({
 	.addLocation('Corona Del Mar Beach', {
 		avatar: 'hannah_joseph',
 		position: '12%',
-		xOffset: -500,
+		xOffset: -575,
 	})
 	.addElement('beach_rocks', {
 		avatar: 'hannah_joseph',
@@ -145,21 +145,52 @@ export const mainScene = Scene.init({
 	})
 	.addElement('la_griffith', {
 		avatar: 'hannah_joseph',
-		position: '28%',
+		position: '29%',
 		size: size(290),
 		xOffset: 250,
 	})
 	.addElement('la_skyline', {
 		avatar: 'hannah_joseph',
-		position: '29%',
-		size: size(300),
-		xOffset: -450,
+		position: '30%',
+		size: size(350),
+		xOffset: -490,
 	})
 	.addElement('la_lamppost', {
 		avatar: 'hannah_joseph',
-		position: '33%',
+		position: '34%',
 		size: size(275),
 		xOffset: 25,
+	})
+
+	// When we first said I love you
+	.addEvent('The first time we said "I love you!"', {
+		avatar: 'hannah_joseph',
+		position: '40%',
+		date: dayjs('2017-08-22'),
+		xOffset: -450,
+	})
+	.addLocation('Corona Del Mar', {
+		avatar: 'hannah_joseph',
+		position: '42%',
+		xOffset: 125,
+	})
+	.addElement('beach_rocks', {
+		avatar: 'hannah_joseph',
+		size: size(300),
+		position: '45%',
+		xOffset: -400,
+	})
+	.addElement('beach_water_sunset', {
+		avatar: 'hannah_joseph',
+		size: size(350),
+		position: '46%',
+		xOffset: 175,
+	})
+	.addElement('beach_palm_tree', {
+		avatar: 'hannah_joseph',
+		size: size(300),
+		position: '50%',
+		xOffset: -600,
 	})
 
 	// Wedding arch
