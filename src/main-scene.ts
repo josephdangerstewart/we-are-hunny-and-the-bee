@@ -13,17 +13,12 @@ function size(width: number, height = width): Size {
 export const mainScene = Scene.init({
 	offsetTop: 200,
 	svg,
+	showScrollTriggers: true,
 })
 	// Avatar definitions
 	.addAvatar('hannah', {
 		size: size(105),
 		hideOnExit: true,
-		animations: [
-			{
-				startAt: '0%',
-				frames: hannahAnimations.walkingNormal
-			},
-		]
 	})
 	.addAvatar('joseph', {
 		size: size(105),

@@ -3,6 +3,7 @@ import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ComposedScene } from './SceneComposer';
 import { Avatar } from '../scene/Avatar';
+import { makeSvg, setSvgAttribute } from './svgUtil';
 
 gsap.registerPlugin(MotionPathPlugin);
 gsap.registerPlugin(ScrollTrigger);
@@ -11,8 +12,8 @@ gsap.registerPlugin(ScrollTrigger);
 // changing to next frame
 const FRAME_DURATION = 75;
 
-interface ScrollManagerOptions {
-	scene: ComposedScene;
+interface ScrollManagerOptions<T extends string> {
+	scene: ComposedScene<T>;
 	topOffset: number;
 }
 
@@ -21,20 +22,20 @@ interface Position {
 	y: number;
 }
 
-export class ScrollManager {
-	private scene: ComposedScene;
+export class ScrollManager<T extends string> {
+	private scene: ComposedScene<T>;
 	private topOffset: number;
 
-	private constructor(options: ScrollManagerOptions) {
+	private constructor(options: ScrollManagerOptions<T>) {
 		this.scene = options.scene;
 		this.topOffset = options.topOffset;
 	}
 
-	public static init(options: ScrollManagerOptions): ScrollManager {
+	public static init<T extends string>(options: ScrollManagerOptions<T>): ScrollManager<T> {
 		return new ScrollManager(options);
 	}
 
-	public observeScroll(): ScrollManager {
+	public observeScroll(): ScrollManager<T> {
 		for (const composedAvatar of this.scene.avatars) {
 			const {
 				path,
@@ -45,11 +46,21 @@ export class ScrollManager {
 			} = composedAvatar;
 
 			const { x, y } = path.getPointAtLength(0);
-			const triggerElement = document.createElement('div');
-			triggerElement.style.position = 'absolute';
-			triggerElement.style.top = `${y}px`;
-			triggerElement.style.left = `${x}px`;
-			this.scene.rootElement.appendChild(triggerElement);
+			const triggerElement = makeSvg('rect');
+			setSvgAttribute<'rect'>(triggerElement, 'x', `${x}`);
+			setSvgAttribute<'rect'>(triggerElement, 'y', `${y}`);
+			setSvgAttribute<'rect'>(triggerElement, 'width', '1');
+			setSvgAttribute<'rect'>(triggerElement, 'height', '1');
+			triggerElement.style.overflow = 'visible'
+
+			if (this.scene.scene.shouldShowScrollTriggers()) {
+				console.log(avatar.name, x, y);
+				const avatarText = makeSvg('text');
+				setSvgAttribute<'text'>(avatarText, 'textContent', `${avatar.name} trigger`);
+				triggerElement.appendChild(avatarText);
+			}
+
+			this.scene.svg.appendChild(triggerElement);
 
 			const onEnd = () => {
 				if (!avatar.hideOnExit) {

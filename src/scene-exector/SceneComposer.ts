@@ -44,10 +44,11 @@ export interface ComposedElement {
 	element: Element;
 }
 
-export interface ComposedScene {
+export interface ComposedScene<TAvatarKind extends string> {
 	avatars: ComposedAvatar[],
-	svg: SVGElement;
+	svg: SVGSVGElement;
 	rootElement: HTMLElement;
+	scene: Scene<TAvatarKind>;
 }
 
 export interface SceneComposerOptions<T extends string> {
@@ -76,7 +77,7 @@ export class SceneComposer<T extends string> {
 		return new SceneComposer(options);
 	}
 
-	public compose(): ComposedScene {
+	public compose(): ComposedScene<T> {
 		const svg = this.loadSvg();
 		const avatars = this.loadAvatars(this.scene.getAvatars(), svg);
 
@@ -84,10 +85,11 @@ export class SceneComposer<T extends string> {
 			svg,
 			avatars,
 			rootElement: this.rootElement,
+			scene: this.scene,
 		};
 	}
 
-	private loadSvg(): SVGElement {
+	private loadSvg(): SVGSVGElement {
 		const svgElement = this.parseSvg(this.scene.getSvg()) as SVGSVGElement;
 		const container = document.createElement('div');
 
@@ -95,11 +97,7 @@ export class SceneComposer<T extends string> {
 			svgElement.classList.add('hide-paths');
 		}
 
-		const width = svgElement.getAttribute('width');
-		const height = svgElement.getAttribute('height');
 		container.style.margin = '0 20px';
-
-		setSvgAttribute<'svg'>(svgElement, 'viewBox', `0 0 ${width} ${height}`);
 
 		svgElement.style.zIndex = `${zIndexes.avatar}`;
 		svgElement.style.overflow = 'visible';

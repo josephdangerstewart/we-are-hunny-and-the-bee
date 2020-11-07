@@ -71,6 +71,7 @@ h1, h2, h3, h4, h5, h6, p {
 .logo.hero {
 	width: 450px;
 	margin-bottom: 25px;
+	max-width: 100%;
 }
 
 #play-button {
