@@ -12,6 +12,7 @@ interface SceneOptions {
 	svg: string;
 	offsetTop?: number;
 	showMotionPath?: boolean;
+	showScrollTriggers?: boolean;
 }
 
 interface AnimationCreationOptions {
@@ -60,6 +61,7 @@ export class Scene<TAvatarKind extends string> {
 	private locations: Record<string, Location[]>;
 	private events: Record<string, Event[]>;
 	private showMotionPath: boolean;
+	private showScrollTriggers: boolean;
 
 	private constructor(options: SceneOptions) {
 		this.offsetTop = options.offsetTop ?? 0;
@@ -69,6 +71,7 @@ export class Scene<TAvatarKind extends string> {
 		this.locations = {};
 		this.events = {};
 		this.showMotionPath = options.showMotionPath
+		this.showScrollTriggers = options.showScrollTriggers;
 	}
 
 	public static init(options: SceneOptions): Scene<undefined> {
@@ -186,5 +189,9 @@ export class Scene<TAvatarKind extends string> {
 
 	public shouldShowMotionPath(): boolean {
 		return this.showMotionPath;
+	}
+
+	public shouldShowScrollTriggers(): boolean {
+		return this.showScrollTriggers;
 	}
 }

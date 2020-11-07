@@ -2,7 +2,7 @@ import { Scene, Avatar, Element, Location, Event } from '../scene';
 import { IdConflictError, MissingPathException } from './errors';
 import mapIcon from './map-icon.svg';
 import { preloadImage } from './preloadImage';
-import { makeSvg, setSvgAttribute } from './svgUtil';
+import { makeSvg, setSvgAttribute, clearSvgAttribute } from './svgUtil';
 
 const getAvatarPath = (n: string) => `/images/avatars/${n}.png`;
 const getElementPath = (n: string) => `/images/elements/${n}.png`;
@@ -88,16 +88,25 @@ export class SceneComposer<T extends string> {
 	}
 
 	private loadSvg(): SVGElement {
-		const svgElement = this.parseSvg(this.scene.getSvg());
+		const svgElement = this.parseSvg(this.scene.getSvg()) as SVGSVGElement;
+		const container = document.createElement('div');
 
 		if (!this.scene.shouldShowMotionPath()) {
 			svgElement.classList.add('hide-paths');
 		}
 
+		const width = svgElement.getAttribute('width');
+		const height = svgElement.getAttribute('height');
+		container.style.margin = '0 20px';
+
+		setSvgAttribute<'svg'>(svgElement, 'viewBox', `0 0 ${width} ${height}`);
+
 		svgElement.style.zIndex = `${zIndexes.avatar}`;
 		svgElement.style.overflow = 'visible';
+		svgElement.style.maxWidth = '100%';
 
-		this.rootElement.appendChild(svgElement);
+		container.appendChild(svgElement);
+		this.rootElement.appendChild(container);
 		return svgElement;
 	}
 
