@@ -1,4 +1,4 @@
-import { gsap } from 'gsap';
+import { gsap, Linear } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ComposedScene } from './SceneComposer';
@@ -99,7 +99,7 @@ export class ScrollManager<T extends string> {
 					onLeave: onEnd,
 					onLeaveBack: onReset,
 				},
-				ease: 'none',
+				ease: Linear.easeNone,
 			});
 
 			for (const element of elements) {
@@ -126,7 +126,8 @@ export class ScrollManager<T extends string> {
 				start: 'top top+=300',
 				scrub: true,
 				end: `${element.getBoundingClientRect().height}`
-			}
+			},
+			ease: Linear.easeNone,
 		})
 	}
 }
