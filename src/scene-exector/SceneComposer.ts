@@ -2,6 +2,7 @@ import { Scene, Avatar, Element, Location, Event } from '../scene';
 import { IdConflictError, MissingPathException } from './errors';
 import mapIcon from './map-icon.svg';
 import { preloadImage } from './preloadImage';
+import { makeSvg, setSvgAttribute } from './svgUtil';
 
 const getAvatarPath = (n: string) => `/images/avatars/${n}.png`;
 const getElementPath = (n: string) => `/images/elements/${n}.png`;
@@ -22,7 +23,7 @@ export interface ComposedAvatar {
 	avatar: Avatar;
 	path: SVGPathElement;
 	pathMeta: PathMeta;
-	imageElement: HTMLImageElement;
+	imageElement: SVGImageElement;
 	elements: ComposedElement[];
 	locations: ComposedLocation[];
 	events: ComposedEvent[];
@@ -90,8 +91,11 @@ export class SceneComposer<T extends string> {
 		const svgElement = this.parseSvg(this.scene.getSvg());
 
 		if (!this.scene.shouldShowMotionPath()) {
-			svgElement.style.visibility = 'hidden';
+			svgElement.classList.add('hide-paths');
 		}
+
+		svgElement.style.zIndex = `${zIndexes.avatar}`;
+		svgElement.style.overflow = 'visible';
 
 		this.rootElement.appendChild(svgElement);
 		return svgElement;
@@ -122,17 +126,13 @@ export class SceneComposer<T extends string> {
 			const pathHeight = path.getBoundingClientRect().height;
 
 			// Create the image element for the avatar
-			const element = document.createElement('img');
-			element.src = getAvatarPath(avatar.name);
+			const element = makeSvg('image');
+
+			setSvgAttribute<'image'>(element, 'href', getAvatarPath(avatar.name));
 			element.style.zIndex = `${zIndexes.avatar}`;
 
 			// Move image element to starting position
-			element.style.position = 'absolute';
-			const startingPoint = path.getPointAtLength(0);
-			this.rootElement.appendChild(element);
-			element.style.top = `${startingPoint.y}px`;
-			const { width } = element.getBoundingClientRect();
-			element.style.left = `${startingPoint.x - (width / 2)}px`;
+			svg.appendChild(element);
 
 			// Set default styles
 			element.style.width = avatar.size?.width && `${avatar.size?.width}px`;
@@ -183,6 +183,21 @@ export class SceneComposer<T extends string> {
 				locations,
 				events,
 			};
+		});
+	}
+
+	private getDataUri(imageSrc: string, width = 100, height = 100): Promise<string> {
+		const canvas = document.createElement('canvas');
+		const context = canvas.getContext('2d');
+		
+		return new Promise((resolve, reject) => {
+			const image = new Image();
+			image.onload = () => resolve(image);
+			image.onerror = reject;
+			image.src = imageSrc;
+		}).then((image) => {
+			context.drawImage(image as HTMLImageElement, width, height);
+			return canvas.toDataURL();
 		});
 	}
 

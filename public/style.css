@@ -5,6 +5,10 @@ body, html {
 	background-color: #FCF3C3;
 }
 
+svg.hide-paths path {
+	visibility: hidden;
+}
+
 #root-container {
 	display: flex;
 	justify-content: center;
