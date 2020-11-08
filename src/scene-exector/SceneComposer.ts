@@ -31,7 +31,7 @@ export interface ComposedAvatar {
 
 export interface ComposedLocation {
 	location: Location;
-	containerElement: HTMLDivElement;
+	containerElement: SVGGElement;
 }
 
 export interface ComposedEvent {
@@ -97,9 +97,8 @@ export class SceneComposer<T extends string> {
 			svgElement.classList.add('hide-paths');
 		}
 
-		container.style.margin = '0 25%';
+		container.classList.add('svg-container');
 
-		svgElement.style.zIndex = `${zIndexes.avatar}`;
 		svgElement.style.overflow = 'visible';
 		svgElement.style.maxWidth = '100%';
 
@@ -136,7 +135,6 @@ export class SceneComposer<T extends string> {
 			const element = makeSvg('image');
 
 			setSvgAttribute<'image'>(element, 'href', getAvatarPath(avatar.name));
-			element.style.zIndex = `${zIndexes.avatar}`;
 
 			// Move image element to starting position
 			svg.appendChild(element);
@@ -156,7 +154,7 @@ export class SceneComposer<T extends string> {
 			// Compose the location text for this avatar
 			const locations: ComposedLocation[] = this.scene
 				.getLocations(avatar.name)
-				.map(e => this.mapLocation(e, path, pathLength));
+				.map(e => this.mapLocation(e, path, pathLength, svg));
 
 			const events: ComposedEvent[] = this.scene
 				.getEvents(avatar.name)
@@ -225,9 +223,12 @@ export class SceneComposer<T extends string> {
 		const point = path.getPointAtLength(pathLength * element.positionPercentage);
 		setSvgAttribute<'image'>(imageElement, 'x', `${point.x + element.xOffset}`);
 		setSvgAttribute<'image'>(imageElement, 'y', `${point.y}`);
-		const zIndex = element?.showInFrontOfAvatar ? zIndexes.aboveAvatar : zIndexes.belowAvatar;
-		imageElement.style.zIndex = `${zIndex}`;
-		svg.appendChild(imageElement);
+
+		if (element?.showInFrontOfAvatar) {
+			svg.append(imageElement);
+		} else {
+			svg.prepend(imageElement);
+		}
 
 		return {
 			imageElement,
@@ -235,33 +236,31 @@ export class SceneComposer<T extends string> {
 		};
 	}
 
-	private mapLocation(location: Location, path: SVGPathElement, pathLength: number): ComposedLocation {
-		const container = document.createElement('div');
-		container.style.position = 'absolute';
-		container.style.display = 'flex';
-		container.style.alignItems = 'center';
+	private mapLocation(location: Location, path: SVGPathElement, pathLength: number, svg: SVGSVGElement): ComposedLocation {
+		const container = makeSvg('g');
+		container.classList.add('show-paths');
 		const point = path.getPointAtLength(pathLength * location.positionPercentage);
-		container.style.top = `${point.y}px`;
-		container.style.left = `${point.x + location.xOffset}px`;
+		setSvgAttribute<'g'>(container, 'transform', `translate(${point.x + location.xOffset}, ${point.y})`);
 		container.style.zIndex = `${zIndexes.belowAvatar}`;
 
 		const locationPin = this.parseSvg(mapIcon);
-		locationPin.style.width = '40px';
-		locationPin.style.height = '40px';
+		setSvgAttribute<'svg'>(locationPin, 'width', '40');
+		setSvgAttribute<'svg'>(locationPin, 'height', '40');
 		locationPin.style.color = '#D63333';
 		locationPin.style.marginRight = '12px';
 
-		const locationTitleElement = document.createElement('h3');
-		locationTitleElement.innerText = location.name;
-		locationTitleElement.style.whiteSpace = 'nowrap';
-		locationTitleElement.style.margin = '0';
+		const locationTitleElement = makeSvg('text');
+		locationTitleElement.innerHTML = location.name;
+		setSvgAttribute<'text'>(locationTitleElement, 'x', '52');
 		locationTitleElement.style.fontSize = '32px';
 		locationTitleElement.style.textTransform = 'uppercase';
 		
 		container.appendChild(locationPin);
 		container.appendChild(locationTitleElement);
 
-		this.rootElement.appendChild(container);
+		setSvgAttribute<'text'>(locationTitleElement, 'y', '35');
+
+		svg.appendChild(container);
 
 		return {
 			location,
@@ -299,8 +298,8 @@ export class SceneComposer<T extends string> {
 		};
 	}
 
-	private parseSvg(svgString: string): SVGElement {
+	private parseSvg(svgString: string): SVGSVGElement {
 		const parser = new DOMParser();
-		return parser.parseFromString(svgString, 'image/svg+xml').documentElement as unknown as SVGElement;
+		return parser.parseFromString(svgString, 'image/svg+xml').documentElement as unknown as SVGSVGElement;
 	}
 }

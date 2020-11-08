@@ -21,6 +21,10 @@ svg.hide-paths path {
 	visibility: hidden;
 }
 
+svg.hide-paths .show-paths path {
+	visibility: visible;
+}
+
 #root-container {
 	display: flex;
 	justify-content: center;
@@ -75,9 +79,15 @@ svg.hide-paths path {
 	margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6, p, text {
 	font-family: 'Nunito';
 	color: #707070;
+}
+
+@media (max-width: 650px) {
+	.svg-container {
+		margin: 0 25%;
+	}
 }
 
 .logo.hero {
