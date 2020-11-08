@@ -5,6 +5,14 @@ body, html {
 	background-color: #FCF3C3;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	overflow-x: hidden;
+}
+
 #scrollbar {
 	height: 100%;
 }

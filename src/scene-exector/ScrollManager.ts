@@ -114,7 +114,6 @@ export class ScrollManager<T extends string> {
 			}
 
 			window.onresize = () => {
-				avatarTween.invalidate();
 				ScrollTrigger.refresh();
 			};
 		}

@@ -30,7 +30,6 @@ export const mainScene = Scene.init({
 	})
 	.addAvatar('bus', {
 		size: size(300),
-		offsetTop: -60,
 	})
 	
 	// Nevada elements
