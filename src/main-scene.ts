@@ -13,6 +13,7 @@ function size(width: number, height = width): Size {
 export const mainScene = Scene.init({
 	offsetTop: 200,
 	svg,
+	useNativeScrolling: true,
 })
 	// Avatar definitions
 	.addAvatar('hannah', {

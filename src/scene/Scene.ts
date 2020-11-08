@@ -13,6 +13,7 @@ interface SceneOptions {
 	offsetTop?: number;
 	showMotionPath?: boolean;
 	showScrollTriggers?: boolean;
+	useNativeScrolling?: boolean;
 }
 
 interface AnimationCreationOptions {
@@ -62,6 +63,7 @@ export class Scene<TAvatarKind extends string> {
 	private events: Record<string, Event[]>;
 	private showMotionPath: boolean;
 	private showScrollTriggers: boolean;
+	private useNativeScrolling: boolean;
 
 	private constructor(options: SceneOptions) {
 		this.offsetTop = options.offsetTop ?? 0;
@@ -72,6 +74,7 @@ export class Scene<TAvatarKind extends string> {
 		this.events = {};
 		this.showMotionPath = options.showMotionPath
 		this.showScrollTriggers = options.showScrollTriggers;
+		this.useNativeScrolling = options.useNativeScrolling;
 	}
 
 	public static init(options: SceneOptions): Scene<undefined> {
@@ -193,5 +196,9 @@ export class Scene<TAvatarKind extends string> {
 
 	public shouldShowScrollTriggers(): boolean {
 		return this.showScrollTriggers;
+	}
+
+	public shouldUseNativeScrolling(): boolean {
+		return this.useNativeScrolling;
 	}
 }

@@ -114,7 +114,6 @@ export class ScrollManager<T extends string> {
 			}
 
 			window.onresize = () => {
-				console.log('hi');
 				avatarTween.invalidate();
 				ScrollTrigger.refresh();
 			};
@@ -122,7 +121,7 @@ export class ScrollManager<T extends string> {
 		return this;
 	}
 
-	private animateElement(element: HTMLElement) {
+	private animateElement(element: Element) {
 		gsap.to(element, {
 			startAt: {
 				y: -75,

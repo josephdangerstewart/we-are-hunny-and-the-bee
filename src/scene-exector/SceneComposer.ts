@@ -40,7 +40,7 @@ export interface ComposedEvent {
 }
 
 export interface ComposedElement {
-	imageElement: HTMLImageElement;
+	imageElement: SVGImageElement;
 	element: Element;
 }
 
@@ -97,7 +97,7 @@ export class SceneComposer<T extends string> {
 			svgElement.classList.add('hide-paths');
 		}
 
-		container.style.margin = '0 20px';
+		container.style.margin = '0 25%';
 
 		svgElement.style.zIndex = `${zIndexes.avatar}`;
 		svgElement.style.overflow = 'visible';
@@ -108,7 +108,7 @@ export class SceneComposer<T extends string> {
 		return svgElement;
 	}
 
-	private loadAvatars(avatars: Avatar[], svg: SVGElement): ComposedAvatar[] {
+	private loadAvatars(avatars: Avatar[], svg: SVGSVGElement): ComposedAvatar[] {
 		const allPaths = this.getPathsFromSvgElement(svg);
 		const pathsById = allPaths.reduce<{ [id: string]: SVGPathElement }>((map, cur) => {
 				if (!cur.id) {
@@ -151,7 +151,7 @@ export class SceneComposer<T extends string> {
 			// Compose elements for this avatar
 			const elements: ComposedElement[] = this.scene
 				.getElements(avatar.name)
-				.map(e => this.mapElement(e, path, pathLength));
+				.map(e => this.mapElement(e, path, pathLength, svg));
 
 			// Compose the location text for this avatar
 			const locations: ComposedLocation[] = this.scene
@@ -193,21 +193,6 @@ export class SceneComposer<T extends string> {
 		});
 	}
 
-	private getDataUri(imageSrc: string, width = 100, height = 100): Promise<string> {
-		const canvas = document.createElement('canvas');
-		const context = canvas.getContext('2d');
-		
-		return new Promise((resolve, reject) => {
-			const image = new Image();
-			image.onload = () => resolve(image);
-			image.onerror = reject;
-			image.src = imageSrc;
-		}).then((image) => {
-			context.drawImage(image as HTMLImageElement, width, height);
-			return canvas.toDataURL();
-		});
-	}
-
 	private getPathsFromSvgElement(element: SVGElement): SVGPathElement[] {
 		const paths: SVGPathElement[] = [];
 
@@ -224,25 +209,25 @@ export class SceneComposer<T extends string> {
 		return paths;
 	}
 
-	private mapElement(element: Element, path: SVGPathElement, pathLength: number): ComposedElement {
-		const imageElement = document.createElement('img');
-		imageElement.src = getElementPath(element.name);
+	private mapElement(element: Element, path: SVGPathElement, pathLength: number, svg: SVGSVGElement): ComposedElement {
+		const imageElement = makeSvg('image');
+		setSvgAttribute<'image'>(imageElement, 'href', getElementPath(element.name));
 		imageElement.style.position = 'absolute';
 
 		if (element.size?.width) {
-			imageElement.style.width = `${element.size.width}px`;
+			setSvgAttribute<'image'>(imageElement, 'width', `${element.size.width}`);
 		}
 
 		if (element.size?.height) {
-			imageElement.style.height = `${element.size.height}px`;
+			setSvgAttribute<'image'>(imageElement, 'height', `${element.size.height}`);
 		}
 
 		const point = path.getPointAtLength(pathLength * element.positionPercentage);
-		imageElement.style.top = `${point.y}px`;
-		imageElement.style.left = `${point.x + element.xOffset}px`;
+		setSvgAttribute<'image'>(imageElement, 'x', `${point.x + element.xOffset}`);
+		setSvgAttribute<'image'>(imageElement, 'y', `${point.y}`);
 		const zIndex = element?.showInFrontOfAvatar ? zIndexes.aboveAvatar : zIndexes.belowAvatar;
 		imageElement.style.zIndex = `${zIndex}`;
-		this.rootElement.appendChild(imageElement);
+		svg.appendChild(imageElement);
 
 		return {
 			imageElement,

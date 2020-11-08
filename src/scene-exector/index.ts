@@ -9,7 +9,6 @@ class OnUserScrollHandlerPlugin extends ScrollbarPlugin {
 	private handler: OnUserScrollHandler;
 
 	onInit() {
-		console.log(this.options);
 		this.handler = this.options.handler;
 	}
 
@@ -59,31 +58,34 @@ export function compose<T extends string>(scene: Scene<T>, rootElement: HTMLElem
 		})
 		.compose();
 
-	const element = document.body;
-	const scrollHandler = new OnUserScrollHandler();
-	window.scrollTo({ left: 0, top: 0 });
-	const scrollbar = Scrollbar.init(element, {
-		plugins: {
-			onUserScroll: {
-				handler: scrollHandler,
+	let scrollbar: Scrollbar;
+	let scrollHandler: OnUserScrollHandler;
+	if (!scene.shouldUseNativeScrolling()) {
+		const element = document.body;
+		scrollHandler = new OnUserScrollHandler();
+		scrollbar = Scrollbar.init(element, {
+			plugins: {
+				onUserScroll: {
+					handler: scrollHandler,
+				},
 			},
-		}
-	});
+		});
 
-	ScrollTrigger.scrollerProxy(element, {
-		scrollTop(value) {
-			if (arguments.length) {
-				scrollbar.scrollTop = value;
+		ScrollTrigger.scrollerProxy(element, {
+			scrollTop(value) {
+				if (arguments.length) {
+					scrollbar.scrollTop = value;
+				}
+				return scrollbar.scrollTop;
+			},
+			getBoundingClientRect() {
+				return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
 			}
-			return scrollbar.scrollTop;
-		},
-		getBoundingClientRect() {
-			return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-		}
-	});
+		});
 
-	// when the smooth scroller updates, tell ScrollTrigger to update() too: 
-	scrollbar.addListener(ScrollTrigger.update);
+		// when the smooth scroller updates, tell ScrollTrigger to update() too: 
+		scrollbar.addListener(ScrollTrigger.update);
+	}
 
 	return {
 		execute: () => {

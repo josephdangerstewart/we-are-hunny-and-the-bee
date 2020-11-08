@@ -8,7 +8,6 @@ app.get('/', (req, response) => {
 	response.sendFile(`${publicDir}/index.html`);
 });
 
-console.log(publicDir);
 app.use(express.static(publicDir));
 
 const port = process.env.PORT ?? 8080;
