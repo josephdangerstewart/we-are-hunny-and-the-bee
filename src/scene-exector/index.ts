@@ -61,6 +61,7 @@ export function compose<T extends string>(scene: Scene<T>, rootElement: HTMLElem
 
 	const element = document.body;
 	const scrollHandler = new OnUserScrollHandler();
+	window.scrollTo({ left: 0, top: 0 });
 	const scrollbar = Scrollbar.init(element, {
 		plugins: {
 			onUserScroll: {
