@@ -278,7 +278,6 @@ export class SceneComposer<T extends string> {
 
 		this.rootElement.appendChild(container);
 
-		console.log(container);
 		return {
 			location,
 			containerElement: container,
@@ -309,7 +308,6 @@ export class SceneComposer<T extends string> {
 
 		this.rootElement.appendChild(container);
 
-		console.log(container);
 		return {
 			event,
 			containerElement: container,
