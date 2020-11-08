@@ -35,6 +35,18 @@ export class ScrollManager<T extends string> {
 		return new ScrollManager(options);
 	}
 
+	private getTrigger(x: number, y: number, avatar: Avatar): SVGRectElement {
+		const triggerElement = makeSvg('rect');
+		setSvgAttribute<'rect'>(triggerElement, 'x', `${x}`);
+		setSvgAttribute<'rect'>(triggerElement, 'y', `${y}`);
+		setSvgAttribute<'rect'>(triggerElement, 'width', '1');
+		setSvgAttribute<'rect'>(triggerElement, 'height', '1');
+		triggerElement.style.overflow = 'visible';
+
+		this.scene.svg.appendChild(triggerElement);
+		return triggerElement;
+	}
+
 	public observeScroll(): ScrollManager<T> {
 		for (const composedAvatar of this.scene.avatars) {
 			const {
@@ -45,22 +57,10 @@ export class ScrollManager<T extends string> {
 				elements,
 			} = composedAvatar;
 
-			const { x, y } = path.getPointAtLength(0);
-			const triggerElement = makeSvg('rect');
-			setSvgAttribute<'rect'>(triggerElement, 'x', `${x}`);
-			setSvgAttribute<'rect'>(triggerElement, 'y', `${y}`);
-			setSvgAttribute<'rect'>(triggerElement, 'width', '1');
-			setSvgAttribute<'rect'>(triggerElement, 'height', '1');
-			triggerElement.style.overflow = 'visible'
-
-			if (this.scene.scene.shouldShowScrollTriggers()) {
-				console.log(avatar.name, x, y);
-				const avatarText = makeSvg('text');
-				setSvgAttribute<'text'>(avatarText, 'textContent', `${avatar.name} trigger`);
-				triggerElement.appendChild(avatarText);
-			}
-
-			this.scene.svg.appendChild(triggerElement);
+			const { x: startX, y: startY } = path.getPointAtLength(0);
+			const { x: endX, y: endY } = path.getPointAtLength(pathMeta.length);
+			const triggerElement = this.getTrigger(startX, startY, avatar);
+			const endTriggerElement =this.getTrigger(endX, endY, avatar);
 
 			const onEnd = () => {
 				if (!avatar.hideOnExit) {
@@ -82,22 +82,27 @@ export class ScrollManager<T extends string> {
 
 			const totalOffset = avatar.offsetTop + this.topOffset;
 
-			gsap.to(imageElement, {
+			const getStartEnd = () => this.topOffset ? `top top+=${totalOffset}` : 'top top';
+			const avatarTween = gsap.to(imageElement, {
 				motionPath: {
 					path,
 					alignOrigin: [0.5, 0],
 					autoRotate: false,
 					align: path,
+					relative: true,
 				},
 				scrollTrigger: {
 					trigger: triggerElement,
-					start: this.topOffset ? `top top+=${totalOffset}` : 'top top',
-					end: `+=${pathMeta.height}`,
+					endTrigger: endTriggerElement,
+					start: getStartEnd,
+					end: getStartEnd,
 					scrub: true,
+					invalidateOnRefresh: true,
 					onEnter: onStart,
 					onEnterBack: onStart,
 					onLeave: onEnd,
 					onLeaveBack: onReset,
+					markers: this.scene.scene.shouldShowScrollTriggers(),
 				},
 				ease: Linear.easeNone,
 			});
@@ -107,6 +112,12 @@ export class ScrollManager<T extends string> {
 					this.animateElement(element.imageElement);
 				}
 			}
+
+			window.onresize = () => {
+				console.log('hi');
+				avatarTween.invalidate();
+				ScrollTrigger.refresh();
+			};
 		}
 		return this;
 	}
