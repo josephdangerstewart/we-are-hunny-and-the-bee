@@ -8,10 +8,6 @@ import { makeSvg, setSvgAttribute } from './svgUtil';
 gsap.registerPlugin(MotionPathPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
-// How long (measured in pixels of vertical scroll) an animation frame stays before
-// changing to next frame
-const FRAME_DURATION = 75;
-
 interface ScrollManagerOptions<T extends string> {
 	scene: ComposedScene<T>;
 	topOffset: number;
@@ -83,7 +79,7 @@ export class ScrollManager<T extends string> {
 			const totalOffset = avatar.offsetTop + this.topOffset;
 
 			const getStartEnd = () => this.topOffset ? `top top+=${totalOffset}` : 'top top';
-			const avatarTween = gsap.to(imageElement, {
+			gsap.to(imageElement, {
 				motionPath: {
 					path,
 					alignOrigin: [0.5, 0],

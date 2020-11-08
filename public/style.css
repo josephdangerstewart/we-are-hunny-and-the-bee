@@ -82,6 +82,7 @@ svg.hide-paths .show-paths path {
 h1, h2, h3, h4, h5, h6, p, text {
 	font-family: 'Nunito';
 	color: #707070;
+	fill: currentColor;
 }
 
 @media (max-width: 650px) {

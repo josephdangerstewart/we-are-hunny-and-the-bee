@@ -166,7 +166,7 @@ export const mainScene = Scene.init({
 	})
 
 	// When we first said I love you
-	.addEvent('The first time we said "I love you!"', {
+	.addEvent('Our first "I love you!"', {
 		avatar: 'hannah_joseph',
 		position: '40%',
 		date: dayjs('2017-08-22'),
@@ -197,11 +197,11 @@ export const mainScene = Scene.init({
 	})
 
 	// Proposal
-	.addEvent('When we got engaged...', {
+	.addEvent('When he proposed...', {
 		avatar: 'hannah_joseph',
 		position: '81%',
 		date: dayjs('2017-04-15'),
-		xOffset: -400
+		xOffset: -450
 	})
 	.addLocation('Los Angeles', {
 		avatar: 'hannah_joseph',

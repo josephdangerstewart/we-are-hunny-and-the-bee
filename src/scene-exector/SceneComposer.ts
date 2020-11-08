@@ -36,7 +36,7 @@ export interface ComposedLocation {
 
 export interface ComposedEvent {
 	event: Event,
-	containerElement: HTMLDivElement;
+	containerElement: SVGGElement;
 }
 
 export interface ComposedElement {
@@ -158,7 +158,7 @@ export class SceneComposer<T extends string> {
 
 			const events: ComposedEvent[] = this.scene
 				.getEvents(avatar.name)
-				.map(e => this.mapEvent(e, path, pathLength));
+				.map(e => this.mapEvent(e, path, pathLength, svg));
 
 			if (avatar.animations) {
 				for (const animation of avatar.animations) {
@@ -268,29 +268,24 @@ export class SceneComposer<T extends string> {
 		};
 	}
 
-	private mapEvent(event: Event, path: SVGPathElement, pathLength: number): ComposedEvent {
-		const container = document.createElement('div');
-		container.style.position = 'absolute';
+	private mapEvent(event: Event, path: SVGPathElement, pathLength: number, svg: SVGSVGElement): ComposedEvent {
+		const container = makeSvg('g');
 		const point = path.getPointAtLength(pathLength * event.positionPercentage);
-		container.style.top = `${point.y}px`;
-		container.style.left = `${point.x + event.xOffset}px`;
-		container.style.zIndex = `${zIndexes.belowAvatar}`;
-		container.style.maxWidth = '350px';
+		setSvgAttribute<'g'>(container, 'transform', `translate(${point.x + event.xOffset}, ${point.y})`);
 
-		const titleElement = document.createElement('h3');
-		titleElement.innerText = event.name;
-		titleElement.style.margin = '0';
+		const titleElement = makeSvg('text');
+		titleElement.innerHTML = event.name;
 		titleElement.style.fontSize = '36px';
 
-		const dateElement = document.createElement('p');
-		dateElement.innerText = event.date;
+		const dateElement = makeSvg('text');
+		dateElement.innerHTML = event.date;
 		dateElement.style.fontSize = '28px';
-		dateElement.style.margin = '0';
+		setSvgAttribute<'text'>(dateElement, 'y', '40');
 
 		container.appendChild(titleElement);
 		container.appendChild(dateElement);
 
-		this.rootElement.appendChild(container);
+		svg.appendChild(container);
 
 		return {
 			event,
