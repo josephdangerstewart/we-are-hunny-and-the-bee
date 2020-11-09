@@ -10,9 +10,18 @@ function size(width: number, height = width): Size {
 	return { width, height };
 }
 
+const POSITIONING = {
+	coronaDelMar: 15,
+	ourFirstDate: 30,
+	ourFirstILoveYou: 45,
+	proposalGriffith: 65,
+	treeBranches: 85,
+}
+
 export const mainScene = Scene.init({
 	offsetTop: 200,
 	svg,
+	useNativeScrolling: true,
 })
 	// Avatar definitions
 	.addAvatar('hannah', {
@@ -111,24 +120,24 @@ export const mainScene = Scene.init({
 	// First corona
 	.addLocation('Corona Del Mar Beach', {
 		avatar: 'hannah_joseph',
-		position: '12%',
+		position: `${POSITIONING.coronaDelMar + 0}%`,
 		xOffset: -575,
 	})
 	.addElement('beach_rocks', {
 		avatar: 'hannah_joseph',
-		position: '12%',
+		position: `${POSITIONING.coronaDelMar + 0}%`,
 		xOffset: 175,
 		size: size(325),
 	})
 	.addElement('beach_water', {
 		avatar: 'hannah_joseph',
-		position: '15%',
+		position: `${POSITIONING.coronaDelMar + 3}%`,
 		xOffset: -525,
 		size: size(400),
 	})
 	.addElement('beach_palm_tree', {
 		avatar: 'hannah_joseph',
-		position: '18%',
+		position: `${POSITIONING.coronaDelMar + 6}%`,
 		xOffset: 45,
 		size: size(375),
 	})
@@ -136,30 +145,30 @@ export const mainScene = Scene.init({
 	// First date in LA
 	.addEvent('Our first date...', {
 		avatar: 'hannah_joseph',
-		position: '25%',
+		position: `${POSITIONING.ourFirstDate + 0}%`,
 		date: dayjs('2017-04-15'),
 		xOffset: -400
 	})
 	.addLocation('Los Angeles', {
 		avatar: 'hannah_joseph',
-		position: '27%',
+		position: `${POSITIONING.ourFirstDate + 2}%`,
 		xOffset: 125,
 	})
 	.addElement('la_griffith', {
 		avatar: 'hannah_joseph',
-		position: '29%',
+		position: `${POSITIONING.ourFirstDate + 4}%`,
 		size: size(290),
 		xOffset: 250,
 	})
 	.addElement('la_skyline', {
 		avatar: 'hannah_joseph',
-		position: '30%',
+		position: `${POSITIONING.ourFirstDate + 5}%`,
 		size: size(350),
 		xOffset: -490,
 	})
 	.addElement('la_lamppost', {
 		avatar: 'hannah_joseph',
-		position: '34%',
+		position: `${POSITIONING.ourFirstDate + 9}%`,
 		size: size(275),
 		xOffset: 25,
 	})
@@ -167,63 +176,73 @@ export const mainScene = Scene.init({
 	// When we first said I love you
 	.addEvent('Our first "I love you!"', {
 		avatar: 'hannah_joseph',
-		position: '40%',
+		position: `${POSITIONING.ourFirstILoveYou + 0}%`,
 		date: dayjs('2017-08-22'),
 		xOffset: -450,
 	})
 	.addLocation('Corona Del Mar', {
 		avatar: 'hannah_joseph',
-		position: '42%',
+		position: `${POSITIONING.ourFirstILoveYou + 2}%`,
 		xOffset: 125,
 	})
 	.addElement('beach_rocks', {
 		avatar: 'hannah_joseph',
 		size: size(300),
-		position: '45%',
+		position: `${POSITIONING.ourFirstILoveYou + 5}%`,
 		xOffset: -400,
 	})
 	.addElement('beach_water_sunset', {
 		avatar: 'hannah_joseph',
 		size: size(350),
-		position: '46%',
+		position: `${POSITIONING.ourFirstILoveYou + 6}%`,
 		xOffset: 175,
 	})
 	.addElement('beach_palm_tree', {
 		avatar: 'hannah_joseph',
 		size: size(300),
-		position: '50%',
+		position: `${POSITIONING.ourFirstILoveYou + 10}%`,
 		xOffset: -600,
 	})
 
 	// Proposal
 	.addEvent('When he proposed...', {
 		avatar: 'hannah_joseph',
-		position: '81%',
+		position: `${POSITIONING.proposalGriffith + 0}%`,
 		date: dayjs('2017-04-15'),
 		xOffset: -450
 	})
 	.addLocation('Los Angeles', {
 		avatar: 'hannah_joseph',
-		position: '83%',
+		position: `${POSITIONING.proposalGriffith + 2}%`,
 		xOffset: 125,
 	})
 	.addElement('la_griffith', {
 		avatar: 'hannah_joseph',
-		position: '85%',
+		position: `${POSITIONING.proposalGriffith + 4}%`,
 		size: size(290),
 		xOffset: -350,
 	})
-	.addElement('la_skyline', {
+	.addElement('la_skyline_stars', {
 		avatar: 'hannah_joseph',
-		position: '86%',
+		position: `${POSITIONING.proposalGriffith + 5}%`,
 		size: size(375),
 		xOffset: 150,
 	})
 	.addElement('la_lamppost', {
 		avatar: 'hannah_joseph',
-		position: '90%',
+		position: `${POSITIONING.proposalGriffith + 9}%`,
 		size: size(300),
 		xOffset: -550,
+	})
+
+	// Covering
+	.addElement('tree_branches_transition', {
+		avatar: 'hannah_joseph',
+		position: `${POSITIONING.treeBranches}%`,
+		size: size(632),
+		xOffset: -316,
+		disableAnimation: true,
+		showInFrontOfAvatar: true,
 	})
 
 	// Wedding arch
