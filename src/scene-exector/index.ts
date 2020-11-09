@@ -3,6 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SceneComposer } from './SceneComposer';
 import { ScrollManager } from './ScrollManager';
 import { Scene } from '../scene/Scene';
+import { gsap } from 'gsap';
 
 class OnUserScrollHandlerPlugin extends ScrollbarPlugin {
 	static pluginName = 'onUserScroll';
@@ -46,8 +47,7 @@ class OnUserScrollHandler {
 
 interface ReadyScene {
 	execute: () => void;
-	scrollbar: Scrollbar;
-	scrollHandler: OnUserScrollHandler;
+	scrollToBottom: () => void;
 }
 
 export function compose<T extends string>(scene: Scene<T>, rootElement: HTMLElement): ReadyScene {
@@ -96,7 +96,25 @@ export function compose<T extends string>(scene: Scene<T>, rootElement: HTMLElem
 				})
 				.observeScroll();
 		},
-		scrollbar,
-		scrollHandler,
+		scrollToBottom: () => {
+			const size = scrollbar.getSize();
+			const contentHeight = size.content.height;
+			const containerHeight = size.container.height;
+			let tween: gsap.core.Tween = null;
+			const listener = () => {
+				tween.kill();
+				scrollHandler.removeListener(listener);
+			}
+
+			tween = gsap.to(scrollbar, {
+				scrollTop: contentHeight - containerHeight,
+				duration: 20,
+				ease: 'none',
+				overwrite: true,
+				onComplete: () => scrollHandler.removeListener(listener),
+			});
+
+			scrollHandler.addListener(listener);
+		},
 	}
 }
