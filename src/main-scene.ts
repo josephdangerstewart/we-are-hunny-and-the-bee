@@ -170,6 +170,10 @@ export const mainScene = Scene.init({
 	})
 
 	// When we first said I love you
+	.addCostumeChange('hannah_joseph', {
+		newCostume: 'hannah_joseph_2',
+		position: `${POSITIONING.ourFirstILoveYou + 3}%`,
+	})
 	.addEvent('Our first "I love you!"', {
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.ourFirstILoveYou + 0}%`,
@@ -201,6 +205,10 @@ export const mainScene = Scene.init({
 	})
 
 	// Proposal
+	.addCostumeChange('hannah_joseph', {
+		newCostume: 'hannah_joseph_3',
+		position: `${POSITIONING.proposalGriffith + 9}%`,
+	})
 	.addEvent('When he proposed...', {
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.proposalGriffith + 0}%`,
@@ -232,6 +240,10 @@ export const mainScene = Scene.init({
 	})
 
 	// Covering
+	.addCostumeChange('hannah_joseph', {
+		newCostume: 'hannah_joseph_4',
+		position: `${POSITIONING.treeBranches + 3}%`,
+	})
 	.addElement('tree_branches_transition', {
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.treeBranches}%`,
