@@ -2,7 +2,7 @@ import { Scene, Avatar, Element, Location, Event } from '../scene';
 import { IdConflictError, MissingPathException } from './errors';
 import mapIcon from './map-icon.svg';
 import { preloadImage } from './preloadImage';
-import { makeSvg, setSvgAttribute, clearSvgAttribute } from './svgUtil';
+import { makeSvg, setSvgAttribute } from './svgUtil';
 
 const getAvatarPath = (n: string) => `/images/avatars/${n}.png`;
 const getElementPath = (n: string) => `/images/elements/${n}.png`;
@@ -19,6 +19,11 @@ export interface PathMeta {
 	height: number;
 }
 
+export interface ComposedCostumeChange {
+	positionPercentage: number;
+	costumePath: string;
+}
+
 export interface ComposedAvatar {
 	avatar: Avatar;
 	path: SVGPathElement;
@@ -27,6 +32,7 @@ export interface ComposedAvatar {
 	elements: ComposedElement[];
 	locations: ComposedLocation[];
 	events: ComposedEvent[];
+	costumes: ComposedCostumeChange[];
 }
 
 export interface ComposedLocation {
@@ -160,8 +166,14 @@ export class SceneComposer<T extends string> {
 				.getEvents(avatar.name)
 				.map(e => this.mapEvent(e, path, pathLength, svg));
 
+			const costumes = [];
 			for (const costume of avatar.costumes) {
-				preloadImage(getCostumePath(costume.costumeName));
+				const costumePath = getCostumePath(costume.costumeName);
+				preloadImage(costumePath);
+				costumes.push({
+					costumePath,
+					positionPercentage: costume.positionPercentage,
+				});
 			}
 
 			return {
@@ -175,6 +187,7 @@ export class SceneComposer<T extends string> {
 				elements,
 				locations,
 				events,
+				costumes,
 			};
 		});
 	}

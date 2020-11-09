@@ -38,6 +38,7 @@ export class ScrollManager<T extends string> {
 		setSvgAttribute<'rect'>(triggerElement, 'width', '1');
 		setSvgAttribute<'rect'>(triggerElement, 'height', '1');
 		triggerElement.style.overflow = 'visible';
+		triggerElement.style.visibility = 'hidden';
 
 		this.scene.svg.appendChild(triggerElement);
 		return triggerElement;
@@ -51,6 +52,7 @@ export class ScrollManager<T extends string> {
 				pathMeta,
 				avatar,
 				elements,
+				costumes,
 			} = composedAvatar;
 
 			const { x: startX, y: startY } = path.getPointAtLength(0);
@@ -107,6 +109,23 @@ export class ScrollManager<T extends string> {
 				if (!element.element.disableAnimation) {
 					this.animateElement(element.imageElement);
 				}
+			}
+
+			for (let i = 0; i < costumes.length; i++) {
+				const previousCostumePath = i === 0 ? imageElement.href.baseVal : costumes[i - 1].costumePath;
+				const point = path.getPointAtLength(pathMeta.length * costumes[i].positionPercentage);
+				const trigger = this.getTrigger(point.x, point.y, avatar);
+
+				ScrollTrigger.create({
+					trigger,
+					start: 'top top',
+					onEnter: () => {
+						setSvgAttribute<'image'>(imageElement, 'href', costumes[i].costumePath);
+					},
+					onEnterBack: () => {
+						setSvgAttribute<'image'>(imageElement, 'href', previousCostumePath);
+					},
+				});
 			}
 
 			window.onresize = () => {

@@ -172,7 +172,7 @@ export const mainScene = Scene.init({
 	// When we first said I love you
 	.addCostumeChange('hannah_joseph', {
 		newCostume: 'hannah_joseph_2',
-		position: `${POSITIONING.ourFirstILoveYou + 3}%`,
+		position: `${POSITIONING.ourFirstILoveYou + 2}%`,
 	})
 	.addEvent('Our first "I love you!"', {
 		avatar: 'hannah_joseph',
@@ -207,7 +207,7 @@ export const mainScene = Scene.init({
 	// Proposal
 	.addCostumeChange('hannah_joseph', {
 		newCostume: 'hannah_joseph_3',
-		position: `${POSITIONING.proposalGriffith + 9}%`,
+		position: `${POSITIONING.proposalGriffith + 2}%`,
 	})
 	.addEvent('When he proposed...', {
 		avatar: 'hannah_joseph',
