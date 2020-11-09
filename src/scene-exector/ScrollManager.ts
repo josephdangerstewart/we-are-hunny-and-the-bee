@@ -94,7 +94,7 @@ export class ScrollManager<T extends string> {
 					endTrigger: endTriggerElement,
 					start: getStartEnd,
 					end: getStartEnd,
-					scrub: true,
+					scrub: 0.5,
 					invalidateOnRefresh: true,
 					onEnter: onStart,
 					onEnterBack: onStart,
@@ -148,7 +148,7 @@ export class ScrollManager<T extends string> {
 			scrollTrigger: {
 				trigger: element,
 				start: 'top top+=300',
-				scrub: true,
+				scrub: 0.5,
 				end: `${element.getBoundingClientRect().height}`
 			},
 			ease: Linear.easeNone,
