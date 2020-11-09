@@ -15,7 +15,7 @@ const POSITIONING = {
 	ourFirstDate: 30,
 	ourFirstILoveYou: 45,
 	proposalGriffith: 65,
-	treeBranches: 85,
+	treeBranches: 83,
 }
 
 export const mainScene = Scene.init({
