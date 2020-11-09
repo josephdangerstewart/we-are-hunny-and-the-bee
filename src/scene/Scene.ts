@@ -16,17 +16,11 @@ interface SceneOptions {
 	useNativeScrolling?: boolean;
 }
 
-interface AnimationCreationOptions {
-	startAt: string;
-	frames: string[];
-}
-
 interface AvatarCreationOptions {
 	size: Size;
 	offsetTop?: number;
 	hideOnExit?: boolean;
 	initiallyHidden?: boolean;
-	animations?: AnimationCreationOptions[];
 }
 
 interface LocationCreationOptions<T extends string> {
@@ -50,6 +44,11 @@ interface EventCreationOptions<T extends string> {
 	position: string;
 	xOffset?: number;
 	size?: Size;
+}
+
+interface CostumeChangeOptions {
+	newCostume: string;
+	position: string;
 }
 
 type Not<T, ExcludedT> = T extends ExcludedT ? never : T;
@@ -88,10 +87,7 @@ export class Scene<TAvatarKind extends string> {
 			initiallyHidden: options.initiallyHidden ?? false,
 			offsetTop: options.offsetTop ?? 0,
 			hideOnExit: options.hideOnExit ?? false,
-			animations: options.animations?.map(x => ({
-				startPositionPercentage: this.parsePercentage(x.startAt),
-				frames: x.frames,
-			})),
+			costumes: [],
 		});
 		return this;
 	}
@@ -152,6 +148,15 @@ export class Scene<TAvatarKind extends string> {
 			this.elements[element.avatar] = [ result ];
 		}
 
+		return this;
+	}
+
+	public addCostumeChange(avatarName: TAvatarKind, options: CostumeChangeOptions): Scene<TAvatarKind> {
+		const avatar = this.avatars.find(x => x.name === avatarName);
+		avatar.costumes.push({
+			costumeName: options.newCostume,
+			positionPercentage: this.parsePercentage(options.position),
+		});
 		return this;
 	}
 

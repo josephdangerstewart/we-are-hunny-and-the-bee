@@ -6,7 +6,7 @@ import { makeSvg, setSvgAttribute, clearSvgAttribute } from './svgUtil';
 
 const getAvatarPath = (n: string) => `/images/avatars/${n}.png`;
 const getElementPath = (n: string) => `/images/elements/${n}.png`;
-const getAnimationPath = (n: string) => `/images/avatars/animations/${n}.png`;
+const getCostumePath = (n: string) => `/images/avatars/costumes/${n}.png`;
 
 const zIndexes = {
 	belowAvatar: 0,
@@ -160,26 +160,14 @@ export class SceneComposer<T extends string> {
 				.getEvents(avatar.name)
 				.map(e => this.mapEvent(e, path, pathLength, svg));
 
-			if (avatar.animations) {
-				for (const animation of avatar.animations) {
-					for (const frame of animation.frames) {
-						preloadImage(frame);
-					}
-				}
+			for (const costume of avatar.costumes) {
+				preloadImage(getCostumePath(costume.costumeName));
 			}
 
 			return {
 				imageElement: element,
 				path,
-				avatar: {
-					...avatar,
-					animations: avatar?.animations?.map(x => ({
-						...x,
-						frames: x
-							.frames
-							.map(x => x === 'NORMAL' ? getAvatarPath(avatar.name) : getAnimationPath(x)),
-					}))
-				},
+				avatar,
 				pathMeta: {
 					length: pathLength,
 					height: pathHeight,

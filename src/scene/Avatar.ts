@@ -1,5 +1,5 @@
 import { Size } from './Size';
-import { Animation } from './Animation';
+import { CostumeChange } from './CostumeChange';
 
 export interface Avatar {
 	name: string;
@@ -7,5 +7,5 @@ export interface Avatar {
 	initiallyHidden: boolean;
 	offsetTop: number;
 	hideOnExit: boolean;
-	animations?: Animation[];
+	costumes: CostumeChange[];
 }

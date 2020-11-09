@@ -2,10 +2,6 @@ import dayjs from 'dayjs';
 import { Scene, Size } from './scene';
 import svg from './path.svg';
 
-import {
-	hannahAnimations,
-} from './animations';
-
 function size(width: number, height = width): Size {
 	return { width, height };
 }
