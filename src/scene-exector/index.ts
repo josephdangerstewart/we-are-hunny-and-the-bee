@@ -51,7 +51,7 @@ export function compose<T extends string>(scene: Scene<T>, rootElement: HTMLElem
 			gsap.to(scroll, {
 				scrollTop: scroll.getSize().content.height - scroll.getSize().container.height,
 				duration: 90,
-			})
+			});
 		},
 	}
 }
