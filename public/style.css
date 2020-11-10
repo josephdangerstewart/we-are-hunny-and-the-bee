@@ -54,7 +54,11 @@ svg.hide-paths .show-paths path {
 }
 
 #intro-text {
-	margin-bottom: 20px;
+	margin-bottom: 60px;
+}
+
+.bio img {
+	display: none;
 }
 
 #intro-text h1 {
@@ -88,6 +92,53 @@ h1, h2, h3, h4, h5, h6, p, text {
 @media (max-width: 1096px) {
 	.svg-container {
 		margin: 0 25%;
+	}
+
+	#intro-text {
+		display: flex;
+		flex-direction: column;
+		padding: 0 20px;
+	}
+
+	#intro-text h1 {
+		text-align: left;
+		margin-bottom: 22px;
+	}
+
+	#intro-text #hannah-joseph-bio {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.hannah.bio {
+		text-align: left;
+		margin-right: auto;
+	}
+
+	.joseph.bio {
+		text-align: right;
+		margin-left: auto;
+	}
+
+	.joseph.bio p {
+		margin-left: auto;
+	}
+
+	.bio p {
+		max-width: 225px;
+		margin-top: 4px;
+	}
+
+	.bio h2 {
+		margin-bottom: 4px;
+	}
+
+	.bio img {
+		display: initial;
+	}
+
+	#ampersand {
+		text-align: center;
 	}
 }
 
