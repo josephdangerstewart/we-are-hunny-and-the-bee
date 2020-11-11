@@ -38,7 +38,10 @@ export class ScrollManager<T extends string> {
 		setSvgAttribute<'rect'>(triggerElement, 'width', '1');
 		setSvgAttribute<'rect'>(triggerElement, 'height', '1');
 		triggerElement.style.overflow = 'visible';
-		triggerElement.style.visibility = 'hidden';
+
+		if (!this.scene.scene.shouldShowScrollTriggers()) {
+			triggerElement.style.visibility = 'hidden';
+		}
 
 		this.scene.svg.appendChild(triggerElement);
 		return triggerElement;
@@ -118,7 +121,8 @@ export class ScrollManager<T extends string> {
 
 				ScrollTrigger.create({
 					trigger,
-					start: 'top top',
+					start: getStartEnd,
+					end: getStartEnd,
 					onEnter: () => {
 						setSvgAttribute<'image'>(imageElement, 'href', costumes[i].costumePath);
 					},

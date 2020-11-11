@@ -280,6 +280,10 @@ export const mainScene = Scene.init({
 		xOffset: -150,
 		showInFrontOfAvatar: true,
 		disableAnimation: true,
+		mobile: {
+			size: size(500),
+			xOffset: -100,
+		}
 	})
 	.addElement('wedding_platform', {
 		avatar: 'hannah_joseph',
@@ -287,4 +291,8 @@ export const mainScene = Scene.init({
 		size: size(300),
 		xOffset: -150,
 		disableAnimation: true,
+		mobile: {
+			size: size(500),
+			xOffset: -100,
+		}
 	});
