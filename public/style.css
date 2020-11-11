@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6, p, text {
 }
 
 #wedding-details-outer {
-	padding: 60px;
+	padding: 30px;
 	background-color: #96866C;
 	border: 8px solid black;
 	margin-bottom: 40px;
@@ -117,7 +117,6 @@ h1, h2, h3, h4, h5, h6, p, text {
 
 #wedding-details-inner h1 {
 	margin: 25px auto 10px;
-	font-size: 42px;
 }
 
 #wedding-details-inner h2 {
@@ -149,6 +148,19 @@ h1, h2, h3, h4, h5, h6, p, text {
 }
 
 @media (max-width: 1096px) {
+	#wedding-details-outer {
+		padding: 15px;
+		border-width: 4px;
+	}
+
+	#wedding-details-inner {
+		border-width: 4px;
+	}
+
+	#wedding-details img {
+		width: 200px;
+	}
+
 	.svg-container {
 		margin: 0 25%;
 	}
@@ -181,6 +193,10 @@ h1, h2, h3, h4, h5, h6, p, text {
 
 	.joseph.bio p {
 		margin-left: auto;
+	}
+
+	.bio {
+		width: auto;
 	}
 
 	.bio p {
