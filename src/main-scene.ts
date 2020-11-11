@@ -11,7 +11,7 @@ const POSITIONING = {
 	ourFirstDate: 30,
 	ourFirstILoveYou: 45,
 	proposalGriffith: 65,
-	treeBranches: 83,
+	treeBranches: 85,
 }
 
 export const mainScene = Scene.init({
@@ -266,10 +266,14 @@ export const mainScene = Scene.init({
 	.addElement('tree_branches_transition', {
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.treeBranches}%`,
-		size: size(632),
-		xOffset: -316,
+		size: size(750, 444),
+		xOffset: -375,
 		disableAnimation: true,
 		showInFrontOfAvatar: true,
+		mobile: {
+			size: size(1200, 710),
+			xOffset: -225,
+		}
 	})
 
 	// Wedding arch
