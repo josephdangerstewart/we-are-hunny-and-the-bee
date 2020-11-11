@@ -22,22 +22,22 @@ export const mainScene = Scene.init({
 	// Avatar definitions
 	.addAvatar('hannah', {
 		size: size(105),
-		mobileSize: size(200),
+		mobileSize: size(240),
 		hideOnExit: true,
 	})
 	.addAvatar('joseph', {
 		size: size(105),
-		mobileSize: size(200),
+		mobileSize: size(240),
 		hideOnExit: true,
 	})
 	.addAvatar('hannah_joseph', {
 		size: size(135),
-		mobileSize: size(230),
+		mobileSize: size(290),
 		initiallyHidden: true,
 	})
 	.addAvatar('bus', {
 		size: size(300),
-		mobileSize: size(400),
+		mobileSize: size(430),
 	})
 	
 	// Nevada elements
@@ -59,7 +59,8 @@ export const mainScene = Scene.init({
 		size: size(225),
 		xOffset: 70,
 		mobile: {
-			xOffset: 200,
+			xOffset: 50,
+			size: size(325),
 		}
 	})
 
@@ -81,6 +82,10 @@ export const mainScene = Scene.init({
 		position: '50%',
 		size: size(250),
 		xOffset: -305,
+		mobile: {
+			xOffset: -100,
+			size: size(350),
+		}
 	})
 
 	// Biola elements
@@ -121,7 +126,7 @@ export const mainScene = Scene.init({
 	})
 
 	// First corona
-	.addLocation('Corona Del Mar Beach', {
+	.addLocation('Corona Del Mar', {
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.coronaDelMar + 0}%`,
 		xOffset: -575,
