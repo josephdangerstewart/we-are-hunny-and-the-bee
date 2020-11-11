@@ -44,13 +44,22 @@ export const mainScene = Scene.init({
 	.addElement('nevada', {
 		avatar: 'joseph',
 		position: '0%',
-		size: size(250),
+		size: size(260),
 		xOffset: 50,
+		mobile: {
+			xOffset: -25,
+			yOffset: -25,
+		}
 	})
 	.addElement('redrock', {
 		avatar: 'joseph',
 		position: '30%',
 		size: size(250),
+		mobile: {
+			size: size(290),
+			xOffset: -25,
+			yOffset: -35,
+		},
 		xOffset: 80,
 	})
 	.addElement('vegas_sign', {
@@ -61,6 +70,7 @@ export const mainScene = Scene.init({
 		mobile: {
 			xOffset: 50,
 			size: size(325),
+			yOffset: -50,
 		}
 	})
 
@@ -68,14 +78,22 @@ export const mainScene = Scene.init({
 	.addElement('california', {
 		avatar: 'hannah',
 		position: '0%',
-		size: size(250),
-		xOffset: -270
+		size: size(260),
+		xOffset: -270,
+		mobile: {
+			xOffset: -50,
+			yOffset: -25,
+		}
 	})
 	.addElement('beach', {
 		avatar: 'hannah',
 		position: '25%',
 		size: size(250),
-		xOffset: -330
+		xOffset: -330,
+		mobile: {
+			size: size(300),
+			yOffset: -50,
+		}
 	})
 	.addElement('disneyland', {
 		avatar: 'hannah',
@@ -85,6 +103,7 @@ export const mainScene = Scene.init({
 		mobile: {
 			xOffset: -100,
 			size: size(350),
+			yOffset: -50,
 		}
 	})
 
@@ -105,26 +124,40 @@ export const mainScene = Scene.init({
 	.addElement('biola_stewart', {
 		avatar: 'bus',
 		position: '0%',
-		size: size(250),
+		size: size(350),
 		xOffset: -550,
+		mobile: {
+			yOffset: 50,
+		}
 	})
 	.addElement('biola_bells', {
 		avatar: 'bus',
-		position: '30%',
-		size: size(225),
+		position: '1%',
+		size: size(325),
 		xOffset: 300,
+		mobile: {
+			yOffset: 50,
+			xOffset: -50,
+		}
 	})
 	.addElement('biola_fountain', {
-		avatar: 'bus',
-		position: '65%',
-		size: size(250),
-		xOffset: -400,
+		avatar: 'hannah_joseph',
+		position: '5%',
+		size: size(350),
+		xOffset: -500,
+		mobile: {
+			yOffset: 50,
+		}
 	})
 	.addElement('biola_chapel', {
 		avatar: 'bus',
 		position: '100%',
-		size: size(275),
-		xOffset: 250,
+		size: size(375),
+		xOffset: 150,
+		mobile: {
+			yOffset: 50,
+			xOffset: 25
+		}
 	})
 
 	// First corona
@@ -232,7 +265,7 @@ export const mainScene = Scene.init({
 	.addElement('beach_rocks', {
 		avatar: 'hannah_joseph',
 		size: size(300),
-		position: `${POSITIONING.ourFirstILoveYou + 5}%`,
+		position: `${POSITIONING.ourFirstILoveYou + 3}%`,
 		xOffset: -400,
 		mobile: {
 			yOffset: -50,
@@ -304,6 +337,7 @@ export const mainScene = Scene.init({
 		xOffset: -550,
 		mobile: {
 			yOffset: 40,
+			size: size(400)
 		}
 	})
 
