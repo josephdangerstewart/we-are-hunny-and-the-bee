@@ -43,7 +43,7 @@ svg.hide-paths .show-paths path {
 }
 
 #buffer {
-	height: 200px;
+	height: 75px;
 }
 
 #ending-ui {
@@ -54,7 +54,7 @@ svg.hide-paths .show-paths path {
 }
 
 #intro-text {
-	margin-bottom: 60px;
+	margin-bottom: 15px;
 }
 
 .bio img {
@@ -85,8 +85,67 @@ svg.hide-paths .show-paths path {
 
 h1, h2, h3, h4, h5, h6, p, text {
 	font-family: 'Nunito';
-	color: #707070;
 	fill: currentColor;
+}
+
+#wedding-details {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+#wedding-details-outer {
+	padding: 60px;
+	background-color: #96866C;
+	border: 8px solid black;
+	margin-bottom: 40px;
+}
+
+#wedding-details-inner {
+	border: 8px solid black;
+	background-color: white;
+	padding: 20px;
+}
+
+#wedding-details-inner p {
+	max-width: 500px;
+	margin: 20px auto;
+}
+
+#wedding-details-inner h1, #wedding-details-inner h2 {
+	text-align: center;
+}
+
+#wedding-details-inner h1 {
+	margin: 25px auto 10px;
+	font-size: 42px;
+}
+
+#wedding-details-inner h2 {
+	margin: 10px auto 40px;
+	font-weight: normal;
+}
+
+#wedding-details img {
+	width: 300px;
+	height: auto;
+}
+
+#signature {
+	margin: 30px auto 50px;
+}
+
+#signature p {
+	text-align: right;
+	margin: 0 auto;
+}
+
+#image-container {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 
 @media (max-width: 1096px) {
