@@ -22,18 +22,22 @@ export const mainScene = Scene.init({
 	// Avatar definitions
 	.addAvatar('hannah', {
 		size: size(105),
+		mobileSize: size(200),
 		hideOnExit: true,
 	})
 	.addAvatar('joseph', {
 		size: size(105),
+		mobileSize: size(200),
 		hideOnExit: true,
 	})
 	.addAvatar('hannah_joseph', {
 		size: size(135),
+		mobileSize: size(230),
 		initiallyHidden: true,
 	})
 	.addAvatar('bus', {
 		size: size(300),
+		mobileSize: size(400),
 	})
 	
 	// Nevada elements

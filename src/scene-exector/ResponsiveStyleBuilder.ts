@@ -5,7 +5,7 @@ export class ResponsiveStyleBuilder {
 	private mobileStyles: Record<string, string>;
 	
 	constructor() {
-		this.className = (uuid() as string).replace(/-/g, '');
+		this.className = `responsive-${(uuid() as string).replace(/[-]/g, '')}`;
 		this.mobileStyles = {};
 	}
 
@@ -15,15 +15,21 @@ export class ResponsiveStyleBuilder {
 	}
 
 	public compile(): string {
-		const element = document.createElement('style');
 		const mobileStyles = this.getCss('max-width: 1096px');
 
 		if (!mobileStyles) {
 			return '';
 		}
 
-		element.innerHTML = mobileStyles;
-		document.querySelector('head').appendChild(element);
+		const existingStyleElement = document.querySelector('head style');
+
+		if (existingStyleElement) {
+			existingStyleElement.innerHTML += `\n${mobileStyles}`;
+		} else {
+			const element = document.createElement('style');
+			element.innerHTML = mobileStyles;
+			document.querySelector('head').appendChild(element);
+		}
 
 		return this.className;
 	}
@@ -37,7 +43,7 @@ export class ResponsiveStyleBuilder {
 
 		const styles = `@media (${mediaQuery}) {
 	.${this.className} {
-${mobileStyles.map(([ property, value ]) => `\t\t${property}: ${value} !important;\n`)}
+${mobileStyles.map(([ property, value ]) => `\t\t${property}: ${value} !important;\n`).join('')}
 	}
 }`;
 
