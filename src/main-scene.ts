@@ -91,7 +91,7 @@ export const mainScene = Scene.init({
 		size: size(250),
 		xOffset: -330,
 		mobile: {
-			size: size(300),
+			xOffset: -10,
 			yOffset: -50,
 		}
 	})
