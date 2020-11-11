@@ -3,4 +3,5 @@ export interface Location {
 	xOffset: number;
 	positionPercentage: number;
 	name: string;
+	mobileXOffset?: number;
 }

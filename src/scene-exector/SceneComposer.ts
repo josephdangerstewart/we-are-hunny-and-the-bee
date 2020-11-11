@@ -274,6 +274,7 @@ export class SceneComposer<T extends string> {
 		container.style.zIndex = `${zIndexes.belowAvatar}`;
 
 		const locationPin = this.parseSvg(mapIcon);
+		const locationPinContainer = makeSvg('g');
 		setSvgAttribute<'svg'>(locationPin, 'width', '40');
 		setSvgAttribute<'svg'>(locationPin, 'height', '40');
 		locationPin.style.color = '#D63333';
@@ -283,9 +284,20 @@ export class SceneComposer<T extends string> {
 		locationTitleElement.innerHTML = location.name;
 		setSvgAttribute<'text'>(locationTitleElement, 'x', '52');
 		locationTitleElement.style.fontSize = '32px';
-		locationTitleElement.style.textTransform = 'uppercase';
+
+		const titleStyleBuilder = new ResponsiveStyleBuilder().addMobileStyle('font-size', '50px');
+		const pinStyleBuilder = new ResponsiveStyleBuilder();
+
+		if (location.mobileXOffset) {
+			titleStyleBuilder.addMobileStyle('transform', `translateX(${location.mobileXOffset}px)`);
+			pinStyleBuilder.addMobileStyle('transform', `translate(${location.mobileXOffset}px)`);
+		}
+
+		titleStyleBuilder.compile(locationTitleElement);
+		pinStyleBuilder.compile(locationPinContainer);
 		
-		container.appendChild(locationPin);
+		locationPinContainer.appendChild(locationPin);
+		container.appendChild(locationPinContainer);
 		container.appendChild(locationTitleElement);
 
 		setSvgAttribute<'text'>(locationTitleElement, 'y', '35');
@@ -311,6 +323,17 @@ export class SceneComposer<T extends string> {
 		dateElement.innerHTML = event.date;
 		dateElement.style.fontSize = '28px';
 		setSvgAttribute<'text'>(dateElement, 'y', '40');
+
+		const titleStyleBuilder = new ResponsiveStyleBuilder().addMobileStyle('font-size', '50px');
+		const dateStyleBuilder = new ResponsiveStyleBuilder().addMobileStyle('font-size', '42px');
+
+		if (event.mobileXOffset) {
+			titleStyleBuilder.addMobileStyle('transform', `translateX(${event.mobileXOffset}px)`);
+			dateStyleBuilder.addMobileStyle('transform', `translate(${event.mobileXOffset}px, 16px)`);
+		}
+
+		titleStyleBuilder.compile(titleElement);
+		dateStyleBuilder.compile(dateElement);
 
 		container.appendChild(titleElement);
 		container.appendChild(dateElement);

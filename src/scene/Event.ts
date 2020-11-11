@@ -3,4 +3,5 @@ export interface Event {
 	name: string;
 	positionPercentage: number;
 	xOffset: number;
+	mobileXOffset?: number;
 }

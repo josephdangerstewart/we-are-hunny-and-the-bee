@@ -93,12 +93,14 @@ export const mainScene = Scene.init({
 		avatar: 'joseph',
 		position: '85%',
 		xOffset: 100,
+		mobileXOffset: 15,
 	})
-	.addEvent('When we first met...', {
+	.addEvent('When we met...', {
 		date: dayjs('2016-08-22'),
 		avatar: 'hannah',
 		position: '79%',
 		xOffset: -450,
+		mobileXOffset: -50,
 	})
 	.addElement('biola_stewart', {
 		avatar: 'bus',
@@ -155,12 +157,14 @@ export const mainScene = Scene.init({
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.ourFirstDate + 0}%`,
 		date: dayjs('2017-04-15'),
-		xOffset: -400
+		xOffset: -400,
+		mobileXOffset: -180,
 	})
 	.addLocation('Los Angeles', {
 		avatar: 'hannah_joseph',
-		position: `${POSITIONING.ourFirstDate + 2}%`,
+		position: `${POSITIONING.ourFirstDate + 1}%`,
 		xOffset: 125,
+		mobileXOffset: 90,
 	})
 	.addElement('la_griffith', {
 		avatar: 'hannah_joseph',
@@ -186,11 +190,12 @@ export const mainScene = Scene.init({
 		newCostume: 'hannah_joseph_2',
 		position: `${POSITIONING.ourFirstILoveYou + 2}%`,
 	})
-	.addEvent('Our first "I love you!"', {
+	.addEvent('Our first \'I love you!\'', {
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.ourFirstILoveYou + 0}%`,
 		date: dayjs('2017-08-22'),
 		xOffset: -450,
+		mobileXOffset: -130,
 	})
 	.addLocation('Corona Del Mar', {
 		avatar: 'hannah_joseph',
@@ -225,12 +230,14 @@ export const mainScene = Scene.init({
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.proposalGriffith + 0}%`,
 		date: dayjs('2017-04-15'),
-		xOffset: -450
+		xOffset: -450,
+		mobileXOffset: -145,
 	})
 	.addLocation('Los Angeles', {
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.proposalGriffith + 2}%`,
 		xOffset: 125,
+		mobileXOffset: 90,
 	})
 	.addElement('la_griffith', {
 		avatar: 'hannah_joseph',

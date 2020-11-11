@@ -28,6 +28,7 @@ interface LocationCreationOptions<T extends string> {
 	position: string;
 	xOffset?: number;
 	avatar: T;
+	mobileXOffset?: number;
 }
 
 interface ElementCreationOptions<T extends string> {
@@ -49,6 +50,7 @@ interface EventCreationOptions<T extends string> {
 	position: string;
 	xOffset?: number;
 	size?: Size;
+	mobileXOffset?: number;
 }
 
 interface CostumeChangeOptions {
@@ -106,6 +108,7 @@ export class Scene<TAvatarKind extends string> {
 			avatar: options.avatar,
 			xOffset: options.xOffset ?? 0,
 			positionPercentage,
+			mobileXOffset: options.mobileXOffset,
 		}
 
 		if (this.locations[options.avatar]) {
@@ -125,6 +128,7 @@ export class Scene<TAvatarKind extends string> {
 			date: options.date.format(`MMMM Do, YYYY`),
 			positionPercentage,
 			xOffset: options.xOffset ?? 0,
+			mobileXOffset: options.mobileXOffset,
 		}
 
 		if (this.events[options.avatar]) {
