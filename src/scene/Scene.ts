@@ -18,6 +18,7 @@ interface SceneOptions {
 
 interface AvatarCreationOptions {
 	size: Size;
+	mobileSize?: Size;
 	offsetTop?: number;
 	hideOnExit?: boolean;
 	initiallyHidden?: boolean;
@@ -88,6 +89,7 @@ export class Scene<TAvatarKind extends string> {
 			offsetTop: options.offsetTop ?? 0,
 			hideOnExit: options.hideOnExit ?? false,
 			costumes: [],
+			mobileSize: options.mobileSize,
 		});
 		return this;
 	}

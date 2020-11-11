@@ -3,6 +3,7 @@ import { IdConflictError, MissingPathException } from './errors';
 import mapIcon from './map-icon.svg';
 import { preloadImage } from './preloadImage';
 import { makeSvg, setSvgAttribute } from './svgUtil';
+import { ResponsiveStyleBuilder } from './ResponsiveStyleBuilder';
 
 const getAvatarPath = (n: string) => `/images/avatars/${n}.png`;
 const getElementPath = (n: string) => `/images/elements/${n}.png`;
@@ -139,6 +140,7 @@ export class SceneComposer<T extends string> {
 
 			// Create the image element for the avatar
 			const element = makeSvg('image');
+			const styleBuilder = new ResponsiveStyleBuilder();
 
 			setSvgAttribute<'image'>(element, 'href', getAvatarPath(avatar.name));
 
@@ -151,6 +153,16 @@ export class SceneComposer<T extends string> {
 			if (avatar.initiallyHidden) {
 				element.style.visibility = 'hidden';
 			}
+			
+			if (avatar.mobileSize?.width) {
+				styleBuilder.addMobileStyle('width', `${avatar.mobileSize.width}px`);
+			}
+
+			if (avatar.mobileSize?.height) {
+				styleBuilder.addMobileStyle('height', `${avatar.mobileSize.height}px`);
+			}
+
+			element.classList.add(styleBuilder.compile());
 
 			// Compose elements for this avatar
 			const elements: ComposedElement[] = this.scene
