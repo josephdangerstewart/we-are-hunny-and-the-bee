@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 body, html {
 	padding: 0;
 	margin: 0;
@@ -26,8 +33,12 @@ svg.hide-paths .show-paths path {
 }
 
 #root-container {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 
 #root {
@@ -35,17 +46,32 @@ svg.hide-paths .show-paths path {
 }
 
 #intro-ui {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	height: 100vh;
-	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
 }
 
 #ending-ui {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	height: 100vh;
 }
 
@@ -82,8 +108,12 @@ svg.hide-paths .show-paths path {
 }
 
 #hannah-joseph-bio {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 
 .bio {
@@ -162,7 +192,10 @@ h1, h2, h3, h4, h5, h6, p, text {
 
 @media (max-width: 1096px) {
 	#intro-text-inner {
-		flex-direction: column-reverse;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: reverse;
+		    -ms-flex-direction: column-reverse;
+		        flex-direction: column-reverse;
 	}
 
 	#wedding-details {
@@ -187,8 +220,13 @@ h1, h2, h3, h4, h5, h6, p, text {
 	}
 
 	#intro-text {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		flex-direction: column;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
 		padding: 0 20px;
 	}
 
@@ -198,8 +236,13 @@ h1, h2, h3, h4, h5, h6, p, text {
 	}
 
 	#intro-text #hannah-joseph-bio {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		flex-direction: column;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
 	}
 
 	.hannah.bio {
@@ -250,6 +293,8 @@ h1, h2, h3, h4, h5, h6, p, text {
 	border-radius: 40px;
 	background-color: rgba(0, 0, 0, 0);
 	cursor: pointer;
+	-webkit-transition: background-color .2s;
+	-o-transition: background-color .2s;
 	transition: background-color .2s;
 	outline: none;
 }
