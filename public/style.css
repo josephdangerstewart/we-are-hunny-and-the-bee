@@ -42,10 +42,6 @@ svg.hide-paths .show-paths path {
 	flex-direction: column;
 }
 
-#buffer {
-	height: 75px;
-}
-
 #ending-ui {
 	display: flex;
 	justify-content: center;
@@ -55,6 +51,22 @@ svg.hide-paths .show-paths path {
 
 #intro-text {
 	margin-bottom: 15px;
+}
+
+#intro-text-inner {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+}
+
+#prologue {
+	max-width: 500px;
+	margin: 25px auto 50px;
+	font-weight: bold;
 }
 
 .bio img {
@@ -91,6 +103,7 @@ h1, h2, h3, h4, h5, h6, p, text {
 #wedding-details {
 	max-width: 1000px;
 	margin: 0 auto;
+	margin-top: 100px;
 }
 
 #wedding-details-outer {
@@ -148,6 +161,14 @@ h1, h2, h3, h4, h5, h6, p, text {
 }
 
 @media (max-width: 1096px) {
+	#intro-text-inner {
+		flex-direction: column-reverse;
+	}
+
+	#wedding-details {
+		margin-top: 125px;
+	}
+
 	#wedding-details-outer {
 		padding: 15px;
 		border-width: 4px;
@@ -218,7 +239,7 @@ h1, h2, h3, h4, h5, h6, p, text {
 }
 
 .logo.hero {
-	width: 450px;
+	width: 600px;
 	margin-bottom: 25px;
 	max-width: 100%;
 }
