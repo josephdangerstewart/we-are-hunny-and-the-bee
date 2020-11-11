@@ -47,7 +47,7 @@ export interface ComposedEvent {
 }
 
 export interface ComposedElement {
-	imageElement: SVGImageElement;
+	imageElement: SVGGElement;
 	element: Element;
 }
 
@@ -162,7 +162,7 @@ export class SceneComposer<T extends string> {
 				styleBuilder.addMobileStyle('height', `${avatar.mobileSize.height}px`);
 			}
 
-			element.classList.add(styleBuilder.compile());
+			styleBuilder.compile(element);
 
 			// Compose elements for this avatar
 			const elements: ComposedElement[] = this.scene
@@ -222,29 +222,46 @@ export class SceneComposer<T extends string> {
 
 	private mapElement(element: Element, path: SVGPathElement, pathLength: number, svg: SVGSVGElement): ComposedElement {
 		const imageElement = makeSvg('image');
+		const container = makeSvg('g');
 		setSvgAttribute<'image'>(imageElement, 'href', getElementPath(element.name));
 		imageElement.style.position = 'absolute';
 
 		if (element.size?.width) {
-			setSvgAttribute<'image'>(imageElement, 'width', `${element.size.width}`);
+			imageElement.style.width = `${element.size.width}px`;
 		}
 
 		if (element.size?.height) {
-			setSvgAttribute<'image'>(imageElement, 'height', `${element.size.height}`);
+			imageElement.style.height = `${element.size.height}px`;
 		}
 
 		const point = path.getPointAtLength(pathLength * element.positionPercentage);
 		setSvgAttribute<'image'>(imageElement, 'x', `${point.x + element.xOffset}`);
 		setSvgAttribute<'image'>(imageElement, 'y', `${point.y}`);
 
+		const styleBuilder = new ResponsiveStyleBuilder();
+
+		if (element.mobileSize?.width) {
+			styleBuilder.addMobileStyle('width', `${element.mobileSize.width}px`);
+		}
+
+		if (element.mobileSize?.height) {
+			styleBuilder.addMobileStyle('height', `${element.mobileSize.height}px`);
+		}
+
+		if (element.mobileXOffset) {
+			styleBuilder.addMobileStyle('transform', `translateX(${element.mobileXOffset}px)`);
+		}
+
+		styleBuilder.compile(imageElement);
+		container.appendChild(imageElement);
 		if (element?.showInFrontOfAvatar) {
-			svg.append(imageElement);
+			svg.append(container);
 		} else {
-			svg.prepend(imageElement);
+			svg.prepend(container);
 		}
 
 		return {
-			imageElement,
+			imageElement: container,
 			element,
 		};
 	}

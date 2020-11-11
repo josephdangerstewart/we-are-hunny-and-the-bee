@@ -14,11 +14,11 @@ export class ResponsiveStyleBuilder {
 		return this;
 	}
 
-	public compile(): string {
+	public compile(element: Element): void {
 		const mobileStyles = this.getCss('max-width: 1096px');
 
 		if (!mobileStyles) {
-			return '';
+			return;
 		}
 
 		const existingStyleElement = document.querySelector('head style');
@@ -31,7 +31,7 @@ export class ResponsiveStyleBuilder {
 			document.querySelector('head').appendChild(element);
 		}
 
-		return this.className;
+		element.classList.add(this.className);
 	}
 
 	private getCss(mediaQuery: string): string {

@@ -58,6 +58,9 @@ export const mainScene = Scene.init({
 		position: '60%',
 		size: size(225),
 		xOffset: 70,
+		mobile: {
+			xOffset: 200,
+		}
 	})
 
 	// California elements

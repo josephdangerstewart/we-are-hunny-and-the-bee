@@ -16,6 +16,7 @@ export interface Element {
 	 * to the left of the path while positive values move the element to the right
 	 */
 	xOffset: number;
+	mobileXOffset?: number;
 
 	/**
 	 * @description The name of the png file in public/images/elements
@@ -23,6 +24,7 @@ export interface Element {
 	name: string;
 
 	size?: Size;
+	mobileSize?: Size;
 
 	/**
 	 * @description If true, the element will not animate in

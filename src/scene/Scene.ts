@@ -37,6 +37,10 @@ interface ElementCreationOptions<T extends string> {
 	size?: Size;
 	disableAnimation?: boolean;
 	showInFrontOfAvatar?: boolean;
+	mobile?: {
+		size?: Size;
+		xOffset?: number;
+	}
 }
 
 interface EventCreationOptions<T extends string> {
@@ -142,6 +146,8 @@ export class Scene<TAvatarKind extends string> {
 			size: element.size,
 			showInFrontOfAvatar: element.showInFrontOfAvatar ?? false,
 			disableAnimation: element.disableAnimation ?? false,
+			mobileSize: element.mobile?.size,
+			mobileXOffset: element.mobile?.xOffset,
 		};
 
 		if (this.elements[element.avatar]) {
