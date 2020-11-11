@@ -167,7 +167,7 @@ export class SceneComposer<T extends string> {
 			// Compose elements for this avatar
 			const elements: ComposedElement[] = this.scene
 				.getElements(avatar.name)
-				.map(e => this.mapElement(e, path, pathLength, svg));
+				.map(e => this.mapElement(e, path, pathLength, svg, element));
 
 			// Compose the location text for this avatar
 			const locations: ComposedLocation[] = this.scene
@@ -220,7 +220,7 @@ export class SceneComposer<T extends string> {
 		return paths;
 	}
 
-	private mapElement(element: Element, path: SVGPathElement, pathLength: number, svg: SVGSVGElement): ComposedElement {
+	private mapElement(element: Element, path: SVGPathElement, pathLength: number, svg: SVGSVGElement, avatarElement: Node): ComposedElement {
 		const imageElement = makeSvg('image');
 		const container = makeSvg('g');
 		setSvgAttribute<'image'>(imageElement, 'href', getElementPath(element.name));
@@ -248,8 +248,8 @@ export class SceneComposer<T extends string> {
 			styleBuilder.addMobileStyle('height', `${element.mobileSize.height}px`);
 		}
 
-		if (element.mobileXOffset) {
-			styleBuilder.addMobileStyle('transform', `translateX(${element.mobileXOffset}px)`);
+		if (element.mobileYOffset || element.mobileXOffset) {
+			styleBuilder.addMobileStyle('transform', `translate(${element.mobileXOffset ?? 0}px, ${element.mobileYOffset ?? 0}px)`);
 		}
 
 		styleBuilder.compile(imageElement);
@@ -257,7 +257,7 @@ export class SceneComposer<T extends string> {
 		if (element?.showInFrontOfAvatar) {
 			svg.append(container);
 		} else {
-			svg.prepend(container);
+			svg.insertBefore(container, avatarElement);
 		}
 
 		return {

@@ -138,18 +138,30 @@ export const mainScene = Scene.init({
 		position: `${POSITIONING.coronaDelMar + 0}%`,
 		xOffset: 175,
 		size: size(325),
+		mobile: {
+			size: size(375),
+			yOffset: -50,
+		}
 	})
 	.addElement('beach_water', {
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.coronaDelMar + 3}%`,
 		xOffset: -525,
 		size: size(400),
+		mobile: {
+			size: size(450),
+			xOffset: -50
+		}
 	})
 	.addElement('beach_palm_tree', {
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.coronaDelMar + 6}%`,
 		xOffset: 45,
 		size: size(375),
+		mobile: {
+			size: size(425),
+			xOffset: 100,
+		}
 	})
 
 	// First date in LA
@@ -171,18 +183,33 @@ export const mainScene = Scene.init({
 		position: `${POSITIONING.ourFirstDate + 4}%`,
 		size: size(290),
 		xOffset: 250,
+		mobile: {
+			size: size(375),
+			xOffset: -75,
+			yOffset: -60,
+		}
 	})
 	.addElement('la_skyline', {
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.ourFirstDate + 5}%`,
 		size: size(350),
 		xOffset: -490,
+		mobile: {
+			size: size(400),
+			xOffset: -75,
+			yOffset: -25
+		}
 	})
 	.addElement('la_lamppost', {
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.ourFirstDate + 9}%`,
 		size: size(275),
 		xOffset: 25,
+		mobile: {
+			xOffset: 150,
+			yOffset: 40,
+			size: size(350),
+		}
 	})
 
 	// When we first said I love you
@@ -207,18 +234,32 @@ export const mainScene = Scene.init({
 		size: size(300),
 		position: `${POSITIONING.ourFirstILoveYou + 5}%`,
 		xOffset: -400,
+		mobile: {
+			yOffset: -50,
+			xOffset: -150,
+			size: size(375),
+		}
 	})
 	.addElement('beach_water_sunset', {
 		avatar: 'hannah_joseph',
 		size: size(350),
 		position: `${POSITIONING.ourFirstILoveYou + 6}%`,
 		xOffset: 175,
+		mobile: {
+			size: size(400),
+			xOffset: -10,
+		}
 	})
 	.addElement('beach_palm_tree', {
 		avatar: 'hannah_joseph',
 		size: size(300),
 		position: `${POSITIONING.ourFirstILoveYou + 10}%`,
 		xOffset: -600,
+		mobile: {
+			yOffset: 50,
+			xOffset: 50,
+			size: size(350),
+		}
 	})
 
 	// Proposal
@@ -244,6 +285,11 @@ export const mainScene = Scene.init({
 		position: `${POSITIONING.proposalGriffith + 4}%`,
 		size: size(290),
 		xOffset: -350,
+		mobile: {
+			size: size(400),
+			xOffset: -150,
+			yOffset: -100,
+		}
 	})
 	.addElement('la_skyline_stars', {
 		avatar: 'hannah_joseph',
@@ -256,6 +302,9 @@ export const mainScene = Scene.init({
 		position: `${POSITIONING.proposalGriffith + 9}%`,
 		size: size(300),
 		xOffset: -550,
+		mobile: {
+			yOffset: 40,
+		}
 	})
 
 	// Covering

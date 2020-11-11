@@ -41,6 +41,7 @@ interface ElementCreationOptions<T extends string> {
 	mobile?: {
 		size?: Size;
 		xOffset?: number;
+		yOffset?: number;
 	}
 }
 
@@ -152,6 +153,7 @@ export class Scene<TAvatarKind extends string> {
 			disableAnimation: element.disableAnimation ?? false,
 			mobileSize: element.mobile?.size,
 			mobileXOffset: element.mobile?.xOffset,
+			mobileYOffset: element.mobile?.yOffset,
 		};
 
 		if (this.elements[element.avatar]) {

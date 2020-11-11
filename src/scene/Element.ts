@@ -17,6 +17,7 @@ export interface Element {
 	 */
 	xOffset: number;
 	mobileXOffset?: number;
+	mobileYOffset?: number;
 
 	/**
 	 * @description The name of the png file in public/images/elements
