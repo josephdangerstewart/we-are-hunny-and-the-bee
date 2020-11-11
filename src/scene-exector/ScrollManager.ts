@@ -151,9 +151,9 @@ export class ScrollManager<T extends string> {
 			scale: 1,
 			scrollTrigger: {
 				trigger: element,
-				start: 'top top+=300',
+				start: 'top bottom-=200',
 				scrub: 0.5,
-				end: `${element.getBoundingClientRect().height}`
+				end: `+=${element.getBoundingClientRect().height}`
 			},
 			ease: Linear.easeNone,
 		})

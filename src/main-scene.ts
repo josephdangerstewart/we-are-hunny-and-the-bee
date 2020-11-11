@@ -190,7 +190,7 @@ export const mainScene = Scene.init({
 		newCostume: 'hannah_joseph_2',
 		position: `${POSITIONING.ourFirstILoveYou + 2}%`,
 	})
-	.addEvent('Our first \'I love you!\'', {
+	.addEvent('Our first I love you!', {
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.ourFirstILoveYou + 0}%`,
 		date: dayjs('2017-08-22'),
