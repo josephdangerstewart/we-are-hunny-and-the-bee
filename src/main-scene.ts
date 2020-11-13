@@ -303,7 +303,7 @@ export const mainScene = Scene.init({
 	.addEvent('When he proposed...', {
 		avatar: 'hannah_joseph',
 		position: `${POSITIONING.proposalGriffith + 0}%`,
-		date: dayjs('2017-04-15'),
+		date: dayjs('2020-08-15'),
 		xOffset: -450,
 		mobileXOffset: -145,
 	})
