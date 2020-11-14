@@ -188,6 +188,9 @@ h1, h2, h3, h4, h5, h6, p, text {
 	-webkit-box-pack: center;
 	    -ms-flex-pack: center;
 	        justify-content: center;
+	-webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
 }
 
 @media (max-width: 1096px) {
