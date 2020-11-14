@@ -319,7 +319,7 @@ export const mainScene = Scene.init({
 		size: size(290),
 		xOffset: -350,
 		mobile: {
-			size: size(400),
+			size: size(350),
 			xOffset: -150,
 			yOffset: -100,
 		}
