@@ -193,6 +193,21 @@ h1, h2, h3, h4, h5, h6, p, text {
             align-items: flex-start;
 }
 
+#contact-info {
+	max-width: 430px;
+	margin: 40px auto;
+	text-align: center;
+}
+
+a {
+	color: black;
+	transition: color 0.2s;
+}
+
+a:hover {
+	color: #737a06;
+}
+
 @media (max-width: 1096px) {
 	#intro-text-inner {
 		-webkit-box-orient: vertical;
