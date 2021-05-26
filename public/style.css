@@ -62,6 +62,10 @@ svg.hide-paths .show-paths path {
 	        flex-direction: column;
 }
 
+#intro-ui p {
+	margin: 0 8px;
+}
+
 #ending-ui {
 	display: -webkit-box;
 	display: -ms-flexbox;
